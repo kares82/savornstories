@@ -4,7 +4,7 @@
 
 A modern, responsive booking platform for city tours in Bordeaux, France. Built with vanilla HTML, CSS, and JavaScript with multi-language support and WhatsApp integration.
 
-🌐 **Live Demo:** https://savorstories.com
+🌐 **Live Demo:** https://savornstories.com
 
 ---
 
