@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Savor & Stories — Antoine, Guide Touristique Dieppe</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#eef2f0;color:#20282c;max-width:480px;margin:0 auto}
+.hero{background:#2c4a5e;padding:30px 20px 24px;text-align:center}
+.hero-loc{font-size:10px;letter-spacing:.2em;color:#c4d5dc;text-transform:uppercase;margin-bottom:5px}
+.hero-name{font-size:30px;font-weight:bold;color:#f4f0e8;letter-spacing:.04em}
+.divider{width:40px;height:2px;background:#a83246;margin:10px auto}
+.hero-tag{font-size:13px;color:#e8e2d4;font-style:italic}
+.hero-guide{font-size:11px;color:#c4d5dc;margin-top:5px;letter-spacing:.05em}
+.lang-bar{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.lbtn{padding:6px 18px;border:1.5px solid rgba(255,255,255,0.3);border-radius:20px;font-size:11px;cursor:pointer;letter-spacing:.1em;background:transparent;color:#f4f0e8;font-family:Arial,sans-serif;transition:all .2s}
+.lbtn.active{background:#f4f0e8;color:#2c4a5e;border-color:#f4f0e8;font-weight:bold}
+.body{padding:18px 16px;background:#eef2f0}
+.slabel{font-size:10px;letter-spacing:.15em;color:#6a7478;text-transform:uppercase;margin-bottom:12px;font-weight:bold}
+.tour-card{background:#fff;border-radius:14px;border:0.5px solid #cfdde1;margin-bottom:12px;overflow:hidden}
+.tour-header{display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer}
+.tour-art{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;background:#2c4a5e}
+.tour-info{flex:1;min-width:0}
+.ttitle{font-size:13px;font-weight:bold;color:#7a2c3a;line-height:1.2}
+.tmeta{font-size:11px;color:#6a7478;margin-top:2px}
+.tprice{font-size:13px;font-weight:bold;color:#2c4a5e;white-space:nowrap;flex-shrink:0}
+.tprice small{font-size:10px;font-weight:normal;color:#6a7478}
+.chev{font-size:11px;color:#aaa;flex-shrink:0;margin-left:6px;transition:transform .25s}
+.chev.open{transform:rotate(180deg)}
+.tour-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.tour-body.open{max-height:600px}
+.tour-inner{padding:0 14px 14px;border-top:0.5px solid #e8e2d4}
+.tour-scene{width:100%;height:90px;border-radius:10px;margin:10px 0 8px;overflow:hidden}
+.tdesc{font-size:12px;color:#3a4448;line-height:1.65}
+.tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:#dce8ec;color:#2c4a5e;font-size:10px;padding:3px 9px;border-radius:20px}
+.wa-btn-card{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:10px;background:#25d366;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif;transition:opacity .2s}
+.wa-btn-card:hover{opacity:.88}
+.contact-box{background:#fff;border-radius:14px;border:0.5px solid #cfdde1;padding:16px;margin-top:4px}
+.wa-big{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#25d366;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif;margin-bottom:12px;transition:opacity .2s;text-decoration:none}
+.wa-big:hover{opacity:.88}
+.wa-number{font-size:12px;opacity:.9;display:block;margin-top:2px;font-weight:normal}
+.call-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;background:#2c4a5e;color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif;margin-bottom:12px;transition:opacity .2s;text-decoration:none}
+.call-btn:hover{opacity:.88}
+.email-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;background:#fff;color:#7a2c3a;border:1.5px solid #cfdde1;border-radius:12px;font-size:13px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif;text-decoration:none;transition:background .2s}
+.email-btn:hover{background:#eef2f0}
+.langs-badge{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;padding:8px;background:#dce8ec;border-radius:10px;font-size:12px;color:#2c4a5e;font-weight:bold}
+.form-box{background:#fff;border-radius:14px;border:0.5px solid #cfdde1;padding:16px;margin-top:16px}
+.form-box input,.form-box select,.form-box textarea{width:100%;border:0.5px solid #cfdde1;border-radius:8px;padding:9px 12px;font-size:12px;font-family:Arial,sans-serif;color:#20282c;background:#fafaf8;margin-bottom:10px;outline:none}
+.form-box input:focus,.form-box select:focus,.form-box textarea:focus{border-color:#2c4a5e}
+.form-box textarea{height:72px;resize:none}
+.field-label{font-size:10px;color:#6a7478;margin-bottom:3px;letter-spacing:.05em}
+.required{color:#a83246}
+.send-btn{width:100%;padding:13px;background:#25d366;color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s}
+.send-btn:hover{opacity:.88}
+.error-msg{display:none;color:#a83246;font-size:12px;margin-bottom:8px;padding:8px 10px;background:#fbeaee;border-radius:8px}
+.success-msg{display:none;text-align:center;padding:12px;background:#dce8ec;border-radius:10px;color:#2c4a5e;font-size:13px;font-weight:bold;margin-top:8px}
+.share-bar{display:flex;gap:8px;margin-top:16px}
+.share-btn{flex:1;padding:10px 6px;border:1.5px solid #cfdde1;border-radius:10px;background:#fff;font-size:11px;color:#2c4a5e;cursor:pointer;font-family:Arial,sans-serif;font-weight:bold;text-align:center;transition:background .2s}
+.share-btn:hover{background:#dce8ec}
+.footer{background:#2c4a5e;padding:16px 20px;text-align:center;margin-top:20px}
+.footer p{font-size:11px;color:#c4d5dc;line-height:1.7}
+.footer strong{color:#f4f0e8}
+
+/* Phone with country code */
+.phone-row{display:flex;gap:6px;margin-bottom:10px}
+.phone-row select{width:auto;min-width:100px;flex-shrink:0;margin-bottom:0}
+.phone-row input{flex:1;margin-bottom:0}
+
+/* Calendar Styles */
+.cal-wrapper{margin-bottom:10px}
+.cal-box{background:#fafaf8;border:0.5px solid #cfdde1;border-radius:10px;overflow:hidden}
+.cal-header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#2c4a5e;color:#f4f0e8}
+.cal-header button{background:none;border:none;color:#f4f0e8;font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
+.cal-month-label{font-size:13px;font-weight:bold;letter-spacing:.05em}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);text-align:center}
+.cal-dow{font-size:9px;padding:6px 0;color:#6a7478;letter-spacing:.05em;font-weight:bold}
+.cal-day{font-size:12px;padding:7px 2px;cursor:pointer;border-radius:6px;margin:1px;transition:background .15s}
+.cal-day:hover:not(.cal-blocked):not(.cal-past):not(.cal-empty){background:#dce8ec;color:#2c4a5e}
+.cal-day.cal-past{color:#ccc;cursor:not-allowed}
+.cal-day.cal-blocked{background:#fbeaee;color:#d0a0a8;cursor:not-allowed;text-decoration:line-through;font-size:10px}
+.cal-day.cal-selected{background:#2c4a5e!important;color:#fff!important;font-weight:bold}
+.cal-day.cal-empty{cursor:default}
+.cal-selected-display{font-size:12px;color:#2c4a5e;font-weight:bold;padding:8px 12px;background:#dce8ec;border-top:0.5px solid #cfdde1;text-align:center}
+
+/* Admin panel */
+.admin-toggle{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:20px;cursor:pointer;font-size:11px;color:#6a7478;letter-spacing:.05em}
+.admin-toggle svg{flex-shrink:0}
+.admin-panel{display:none;background:#fff;border-radius:14px;border:1.5px solid #a83246;padding:16px;margin-top:8px}
+.admin-panel.open{display:block}
+.admin-title{font-size:11px;font-weight:bold;color:#a83246;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.admin-pin-wrap{display:flex;gap:8px;margin-bottom:12px}
+.admin-pin-wrap input{flex:1;border:0.5px solid #cfdde1;border-radius:8px;padding:8px 10px;font-size:12px;font-family:Arial,sans-serif;outline:none;background:#fafaf8}
+.admin-pin-wrap button{padding:8px 14px;background:#a83246;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif}
+.admin-content{display:none}
+.admin-content.unlocked{display:block}
+.blocked-list{margin-bottom:12px}
+.blocked-item{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:#fbeaee;border-radius:8px;margin-bottom:6px;font-size:12px;color:#7a2c3a}
+.blocked-item button{background:none;border:none;cursor:pointer;color:#a83246;font-size:14px;padding:0 2px}
+.add-block-row{display:flex;gap:6px}
+.add-block-row input{flex:1;border:0.5px solid #cfdde1;border-radius:8px;padding:8px 10px;font-size:12px;font-family:Arial,sans-serif;outline:none;background:#fafaf8}
+.add-block-row button{padding:8px 14px;background:#2c4a5e;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif}
+.admin-note{font-size:10px;color:#6a7478;margin-top:10px;line-height:1.5;padding:8px;background:#eef2f0;border-radius:6px}
+.admin-pin-error{font-size:11px;color:#a83246;margin-top:4px;display:none}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-loc">Dieppe, Normandy, France</div>
+  <div class="hero-name">Savor &amp; Stories</div>
+  <div class="divider"></div>
+  <div class="hero-tag" id="hero-tag">Authentic tours on the Normandy coast</div>
+  <div class="hero-guide" id="hero-guide">with Antoine · Your local guide</div>
+  <div class="lang-bar">
+    <button class="lbtn active" onclick="setLang('en')">EN</button>
+    <button class="lbtn" onclick="setLang('fr')">FR</button>
+    <button class="lbtn" onclick="setLang('es')">ES</button>
+  </div>
+</div>
+
+<div class="body">
+  <div class="slabel" id="lbl-tours">Our tours</div>
+  <div id="tours-container"></div>
+
+  <div style="margin-top:20px">
+    <div class="slabel" id="lbl-contact">Contact Antoine</div>
+    <div class="contact-box">
+      <a class="wa-big" href="https://wa.me/33626391783" target="_blank">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <div><div id="wa-label">WhatsApp Antoine</div><span class="wa-number">+33 6 26 39 17 83</span></div>
+      </a>
+      <a class="call-btn" href="tel:+33626391783">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        <span id="call-label">Call +33 6 26 39 17 83</span>
+      </a>
+      <a class="email-btn" href="mailto:savornstories@gmail.com">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a2c3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>savornstories@gmail.com</span>
+      </a>
+      <div class="langs-badge">🗣️ <span id="langs-row">Tours in English, French &amp; Spanish</span></div>
+    </div>
+  </div>
+
+  <div class="form-box">
+    <div class="slabel" id="lbl-book" style="margin-bottom:14px">Book a tour</div>
+
+    <div class="field-label" id="fl-name">Your name <span class="required">*</span></div>
+    <input type="text" id="f-name" placeholder="e.g. Maria Garcia">
+
+    <div class="field-label" id="fl-phone">Your WhatsApp / phone number <span class="required">*</span></div>
+    <div class="phone-row">
+      <select id="f-country-code">
+        <option value="+33">🇫🇷 +33</option>
+        <option value="+34">🇪🇸 +34</option>
+        <option value="+1">🇺🇸 +1</option>
+        <option value="+44">🇬🇧 +44</option>
+        <option value="+49">🇩🇪 +49</option>
+        <option value="+31">🇳🇱 +31</option>
+        <option value="+32">🇧🇪 +32</option>
+        <option value="+41">🇨🇭 +41</option>
+        <option value="+39">🇮🇹 +39</option>
+        <option value="+351">🇵🇹 +351</option>
+        <option value="+55">🇧🇷 +55</option>
+        <option value="+52">🇲🇽 +52</option>
+        <option value="+54">🇦🇷 +54</option>
+        <option value="+56">🇨🇱 +56</option>
+        <option value="+57">🇨🇴 +57</option>
+        <option value="+61">🇦🇺 +61</option>
+        <option value="+64">🇳🇿 +64</option>
+        <option value="+81">🇯🇵 +81</option>
+        <option value="+86">🇨🇳 +86</option>
+        <option value="+91">🇮🇳 +91</option>
+        <option value="+7">🇷🇺 +7</option>
+        <option value="+82">🇰🇷 +82</option>
+        <option value="+46">🇸🇪 +46</option>
+        <option value="+47">🇳🇴 +47</option>
+        <option value="+45">🇩🇰 +45</option>
+        <option value="+358">🇫🇮 +358</option>
+        <option value="+48">🇵🇱 +48</option>
+        <option value="+420">🇨🇿 +420</option>
+        <option value="+36">🇭🇺 +36</option>
+        <option value="+40">🇷🇴 +40</option>
+        <option value="+30">🇬🇷 +30</option>
+        <option value="+90">🇹🇷 +90</option>
+        <option value="+972">🇮🇱 +972</option>
+        <option value="+27">🇿🇦 +27</option>
+        <option value="+20">🇪🇬 +20</option>
+        <option value="+212">🇲🇦 +212</option>
+        <option value="+971">🇦🇪 +971</option>
+        <option value="+966">🇸🇦 +966</option>
+        <option value="+65">🇸🇬 +65</option>
+        <option value="+60">🇲🇾 +60</option>
+        <option value="+66">🇹🇭 +66</option>
+      </select>
+      <input type="tel" id="f-phone" placeholder="6 26 39 17 83">
+    </div>
+
+    <div class="field-label" id="fl-tour">Tour <span class="required">*</span></div>
+    <select id="f-tour"><option value="">— choose a tour —</option></select>
+
+    <div class="field-label" id="fl-date">Preferred date <span class="required">*</span></div>
+    <div class="cal-wrapper">
+      <div class="cal-box">
+        <div class="cal-header">
+          <button onclick="calPrev()" aria-label="Previous month">&#8249;</button>
+          <div class="cal-month-label" id="cal-month-label"></div>
+          <button onclick="calNext()" aria-label="Next month">&#8250;</button>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+      </div>
+      <div class="cal-selected-display" id="cal-selected-display" style="display:none"></div>
+    </div>
+    <input type="hidden" id="f-date">
+
+    <div class="field-label" id="fl-group">Number of people <span class="required">*</span></div>
+    <input type="number" id="f-group" placeholder="e.g. 4" min="1">
+
+    <div class="field-label" id="fl-msg">Message / special requests</div>
+    <textarea id="f-msg" placeholder="Any allergies, questions, special wishes…"></textarea>
+
+    <div class="error-msg" id="error-msg">Please fill in all required fields.</div>
+    <button class="send-btn" onclick="sendBooking()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      <span id="send-btn-label">Send booking request to Antoine</span>
+    </button>
+    <div class="success-msg" id="success-msg">✓ WhatsApp is opening — Antoine will get your details!</div>
+  </div>
+
+  <!-- Admin Panel -->
+  <div class="admin-toggle" onclick="toggleAdmin()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+    <span id="admin-toggle-label">Antoine — Manage availability</span>
+  </div>
+  <div class="admin-panel" id="admin-panel">
+    <div class="admin-title">🔒 Admin — Block dates</div>
+    <div class="admin-pin-wrap">
+      <input type="password" id="admin-pin" placeholder="Enter PIN to unlock" onkeydown="if(event.key==='Enter')checkPin()">
+      <button onclick="checkPin()">Unlock</button>
+    </div>
+    <div class="admin-pin-error" id="pin-error">Incorrect PIN. Try again.</div>
+    <div class="admin-content" id="admin-content">
+      <div class="blocked-list" id="blocked-list"></div>
+      <div class="add-block-row">
+        <input type="date" id="block-date-input">
+        <button onclick="addBlockedDate()">Block date</button>
+      </div>
+      <div class="admin-note" id="admin-note">
+        📋 Blocked dates appear crossed out in the calendar and cannot be selected by visitors.<br><br>
+        💡 Dates are saved in your browser. To share across devices, see the Netlify instructions below.
+      </div>
+    </div>
+  </div>
+
+  <div class="share-bar">
+    <button class="share-btn" onclick="copyLink()">🔗 <span id="share-copy">Copy link</span></button>
+    <button class="share-btn" onclick="shareNative()">📤 <span id="share-share">Share</span></button>
+  </div>
+</div>
+
+<div class="footer">
+  <p><strong>Savor &amp; Stories</strong><br><span id="footer-text">Your authentic Dieppe experience · Book your tour today</span></p>
+</div>
+
+<script>
+// ─── BLOCKED DATES STORAGE ───────────────────────────────────────────────────
+// Dates stored as "YYYY-MM-DD" strings in localStorage
+const STORAGE_KEY = 'dieppe_blocked_dates';
+const ADMIN_PIN = '1234'; // ← Antoine: change this PIN!
+
+function loadBlockedDates() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+function saveBlockedDates(dates) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(dates));
+}
+let blockedDates = loadBlockedDates();
+
+// ─── CALENDAR ────────────────────────────────────────────────────────────────
+let calYear, calMonth, selectedDate = null;
+const today = new Date();
+today.setHours(0,0,0,0);
+
+function initCalendar() {
+  calYear = today.getFullYear();
+  calMonth = today.getMonth();
+  renderCalendar();
+}
+
+function calPrev() {
+  calMonth--;
+  if(calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+function calNext() {
+  calMonth++;
+  if(calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const monthNamesFr = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const monthNamesEs = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const names = lang==='fr' ? monthNamesFr : lang==='es' ? monthNamesEs : monthNames;
+  const dows = lang==='fr' ? ['Lu','Ma','Me','Je','Ve','Sa','Di'] : lang==='es' ? ['Lu','Ma','Mi','Ju','Vi','Sá','Do'] : ['Mo','Tu','We','Th','Fr','Sa','Su'];
+
+  document.getElementById('cal-month-label').textContent = names[calMonth] + ' ' + calYear;
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = dows.map(d=>`<div class="cal-dow">${d}</div>`).join('');
+
+  // First day of month (Monday-based)
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const startOffset = (firstDay === 0) ? 6 : firstDay - 1;
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+  // Empty cells before
+  for(let i = 0; i < startOffset; i++) {
+    grid.innerHTML += `<div class="cal-day cal-empty"></div>`;
+  }
+
+  for(let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const thisDate = new Date(calYear, calMonth, d);
+    const isPast = thisDate < today;
+    const isBlocked = blockedDates.includes(dateStr);
+    const isSelected = selectedDate === dateStr;
+
+    let cls = 'cal-day';
+    if(isPast) cls += ' cal-past';
+    else if(isBlocked) cls += ' cal-blocked';
+    if(isSelected) cls += ' cal-selected';
+
+    const clickable = !isPast && !isBlocked;
+    grid.innerHTML += `<div class="${cls}"${clickable?` onclick="selectDate('${dateStr}')"`:''}>${d}</div>`;
+  }
+}
+
+function selectDate(dateStr) {
+  selectedDate = dateStr;
+  document.getElementById('f-date').value = dateStr;
+  const [y,m,d] = dateStr.split('-');
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const monthNamesFr = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const monthNamesEs = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const names = lang==='fr' ? monthNamesFr : lang==='es' ? monthNamesEs : monthNames;
+  const labels = {
+    en: `📅 Selected: ${parseInt(d)} ${names[parseInt(m)-1]} ${y}`,
+    fr: `📅 Sélectionné : ${parseInt(d)} ${names[parseInt(m)-1]} ${y}`,
+    es: `📅 Seleccionado: ${parseInt(d)} ${names[parseInt(m)-1]} ${y}`
+  };
+  const disp = document.getElementById('cal-selected-display');
+  disp.textContent = labels[lang];
+  disp.style.display = 'block';
+  renderCalendar();
+}
+
+// ─── ADMIN PANEL ─────────────────────────────────────────────────────────────
+function toggleAdmin() {
+  const panel = document.getElementById('admin-panel');
+  panel.classList.toggle('open');
+}
+
+function checkPin() {
+  const pin = document.getElementById('admin-pin').value;
+  const err = document.getElementById('pin-error');
+  if(pin === ADMIN_PIN) {
+    document.getElementById('admin-content').classList.add('unlocked');
+    document.getElementById('admin-pin').style.display = 'none';
+    document.querySelector('.admin-pin-wrap button').style.display = 'none';
+    err.style.display = 'none';
+    renderBlockedList();
+  } else {
+    err.style.display = 'block';
+    document.getElementById('admin-pin').value = '';
+  }
+}
+
+function renderBlockedList() {
+  const list = document.getElementById('blocked-list');
+  if(blockedDates.length === 0) {
+    list.innerHTML = `<div style="font-size:11px;color:#6a7478;margin-bottom:8px;padding:6px 10px;background:#eef2f0;border-radius:6px;">No dates blocked yet.</div>`;
+    return;
+  }
+  const sorted = [...blockedDates].sort();
+  list.innerHTML = sorted.map(d => {
+    const [y,m,day] = d.split('-');
+    return `<div class="blocked-item">
+      <span>🚫 ${parseInt(day)}/${m}/${y}</span>
+      <button onclick="removeBlockedDate('${d}')" title="Remove">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function addBlockedDate() {
+  const input = document.getElementById('block-date-input');
+  const d = input.value;
+  if(!d) return;
+  if(!blockedDates.includes(d)) {
+    blockedDates.push(d);
+    saveBlockedDates(blockedDates);
+    renderBlockedList();
+    renderCalendar();
+  }
+  input.value = '';
+}
+
+function removeBlockedDate(d) {
+  blockedDates = blockedDates.filter(x => x !== d);
+  saveBlockedDates(blockedDates);
+  renderBlockedList();
+  renderCalendar();
+}
+
+// ─── TOURS DATA ───────────────────────────────────────────────────────────────
+const TOURS=[
+  {id:'market',icon:'🧀',price:'55€',sceneEl:`<svg width="100%" height="90" viewBox="0 0 320 90"><rect width="320" height="90" fill="#2c4a5e"/><rect x="40" y="45" width="60" height="35" fill="none" stroke="#dce8ec" stroke-width="1.5"/><line x1="40" y1="45" x2="100" y2="45" stroke="#dce8ec" stroke-width="1.5"/><path d="M35 45 L70 20 L105 45" fill="none" stroke="#dce8ec" stroke-width="1.5"/><ellipse cx="180" cy="55" rx="20" ry="9" fill="none" stroke="#f4c775" stroke-width="1.5"/><ellipse cx="180" cy="45" rx="20" ry="9" fill="none" stroke="#f4c775" stroke-width="1.5"/><circle cx="250" cy="50" r="16" fill="none" stroke="#d4a0b0" stroke-width="1.5"/><text x="160" y="82" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)" font-family="Arial">Le Pollet market · Norman cheeses</text></svg>`,
+   en:{title:'Market & Cheese Trail',meta:'2h30 · historic market, cheese & cider tasting',desc:"Wander Dieppe's Saturday market — one of the oldest and liveliest in France — past stalls of Norman cheese, cider and fresh produce, then sit down for a guided tasting of Camembert, Neufchâtel, Pont-l'Évêque and Livarot, paired with local cider.",tags:['Le Pollet market','4 Norman cheeses','Cider pairing','Small group']},
+   fr:{title:'Marché & Fromages',meta:'2h30 · marché historique, fromages & cidre',desc:"Flânez au marché du samedi de Dieppe — l'un des plus anciens et animés de France — parmi les étals de fromages normands, de cidre et de produits frais, puis dégustez Camembert, Neufchâtel, Pont-l'Évêque et Livarot accompagnés d'un cidre local.",tags:['Marché du Pollet','4 fromages normands','Accord cidre','Petit groupe']},
+   es:{title:'Mercado y Quesos',meta:'2h30 · mercado histórico, quesos & sidra',desc:"Recorra el mercado del sábado de Dieppe — uno de los más antiguos y animados de Francia — entre puestos de queso normando, sidra y productos frescos, con una degustación guiada de Camembert, Neufchâtel, Pont-l'Évêque y Livarot maridados con sidra local.",tags:['Mercado Le Pollet','4 quesos normandos','Maridaje con sidra','Grupo pequeño']}},
+  {id:'seafood',icon:'🦪',price:'75€',sceneEl:`<svg width="100%" height="90" viewBox="0 0 320 90"><rect width="320" height="90" fill="#0c3a52"/><rect x="0" y="60" width="320" height="30" fill="#082539"/><path d="M140 55 Q160 30 180 55 Q160 65 140 55" fill="none" stroke="#dce8ec" stroke-width="1.5"/><path d="M145 55 Q160 40 175 55" fill="none" stroke="#dce8ec" stroke-width="1"/><circle cx="235" cy="45" r="18" fill="none" stroke="#f4c775" stroke-width="1.5"/><rect x="60" y="42" width="18" height="26" fill="none" stroke="#c4d5dc" stroke-width="1.5"/><text x="160" y="82" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)" font-family="Arial">Coquilles Saint-Jacques · harbour</text></svg>`,
+   en:{title:'Scallops & Seafood',meta:'3h · fishing port, market & tasting',desc:"Dieppe is the scallop capital of France. Visit the working fishing port at dawn light, watch the day's catch come in at the fish market, then enjoy a fresh seafood tasting overlooking the harbour — coquilles Saint-Jacques included.",tags:['Coquilles Saint-Jacques','Working fishing port','Fresh seafood tasting','Harbour views']},
+   fr:{title:'Coquilles & Fruits de Mer',meta:'3h · port de pêche, criée & dégustation',desc:"Dieppe est la capitale française de la coquille Saint-Jacques. Visitez le port de pêche en activité, découvrez la criée, puis dégustez des fruits de mer frais face au port — coquilles Saint-Jacques incluses.",tags:['Coquilles Saint-Jacques','Port de pêche','Dégustation fraîche','Vue sur le port']},
+   es:{title:'Vieiras y Marisco',meta:'3h · puerto pesquero, lonja & degustación',desc:"Dieppe es la capital francesa de la vieira. Visite el puerto pesquero en activo, descubra la lonja y disfrute de una degustación de marisco fresco frente al puerto, con vieiras incluidas.",tags:['Vieiras (Saint-Jacques)','Puerto pesquero','Degustación fresca','Vistas al puerto']}},
+  {id:'castle',icon:'🏰',price:'60€',sceneEl:`<svg width="100%" height="90" viewBox="0 0 320 90"><rect width="320" height="90" fill="#5c6a70"/><rect x="0" y="68" width="320" height="22" fill="#3d474b"/><rect x="110" y="30" width="80" height="38" fill="none" stroke="#dce8ec" stroke-width="1.5"/><rect x="115" y="14" width="14" height="18" fill="none" stroke="#dce8ec" stroke-width="1.5"/><rect x="171" y="14" width="14" height="18" fill="none" stroke="#dce8ec" stroke-width="1.5"/><rect x="140" y="48" width="20" height="20" fill="rgba(220,232,236,0.2)" stroke="#dce8ec" stroke-width="1"/><path d="M230 68 L250 25 L270 68" fill="none" stroke="#a83246" stroke-width="1.5"/><text x="160" y="82" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)" font-family="Arial">Château-Musée · 1942 Raid</text></svg>`,
+   en:{title:'Castle & 1942 History',meta:'2h30 · clifftop château & Dieppe Raid',desc:"Climb to the clifftop Château-Musée de Dieppe for sweeping views over the Channel, then follow the story of the 1942 Dieppe Raid along the very seafront where it unfolded — a moving and lesser-known chapter of WWII.",tags:['Château-Musée','1942 Dieppe Raid','Clifftop panorama','WWII history']},
+   fr:{title:'Château & Histoire 1942',meta:'2h30 · château sur la falaise & Raid de Dieppe',desc:"Montez au Château-Musée de Dieppe, perché sur la falaise, pour une vue imprenable sur la Manche, puis suivez le récit du Raid de Dieppe de 1942 sur le front de mer où il s'est déroulé.",tags:['Château-Musée','Raid de Dieppe 1942','Panorama sur falaise','Histoire seconde guerre']},
+   es:{title:'Castillo e Historia 1942',meta:'2h30 · castillo en el acantilado & Raid de Dieppe',desc:"Suba al Château-Musée de Dieppe, sobre el acantilado, para disfrutar de vistas al Canal de la Mancha, y siga la historia del Raid de Dieppe de 1942 en el mismo paseo marítimo donde ocurrió.",tags:['Château-Musée','Raid de Dieppe 1942','Panorámica del acantilado','Historia de la IIGM']}},
+  {id:'cliffs',icon:'⛰️',price:'45€',sceneEl:`<svg width="100%" height="90" viewBox="0 0 320 90"><rect width="320" height="90" fill="#a9c6d4"/><rect x="0" y="55" width="320" height="35" fill="#3d6a80"/><path d="M0 55 Q40 20 90 55 Q140 25 200 55 Q250 15 320 55 L320 90 L0 90 Z" fill="#eef2f0" stroke="#c4d5dc" stroke-width="1"/><circle cx="270" cy="20" r="10" fill="#f4c775" opacity="0.6"/><text x="160" y="82" text-anchor="middle" font-size="9" fill="rgba(20,40,50,0.55)" font-family="Arial">White cliffs · Pourville-sur-Mer</text></svg>`,
+   en:{title:'Cliffs & Coastal Walk',meta:'2h · white chalk cliffs to Pourville',desc:"Walk the dramatic white chalk cliffs that once inspired Impressionist painters, from Dieppe's seafront to the quiet village of Pourville-sur-Mer. Fresh sea air, sweeping Channel views, an easy pace for all levels.",tags:['Chalk cliffs','Pourville-sur-Mer','Impressionist scenery','Easy walking']},
+   fr:{title:'Falaises & Sentier Côtier',meta:'2h · falaises de craie jusqu\'à Pourville',desc:"Marchez le long des falaises de craie qui inspirèrent les peintres impressionnistes, du front de mer de Dieppe jusqu'au village paisible de Pourville-sur-Mer. Air marin, vues sur la Manche, rythme accessible à tous.",tags:['Falaises de craie','Pourville-sur-Mer','Paysages impressionnistes','Marche facile']},
+   es:{title:'Acantilados y Sendero Costero',meta:'2h · acantilados blancos hasta Pourville',desc:"Camine por los espectaculares acantilados de creta que inspiraron a los pintores impresionistas, desde el paseo marítimo de Dieppe hasta el tranquilo pueblo de Pourville-sur-Mer. Aire marino, vistas al Canal, ritmo accesible.",tags:['Acantilados de creta','Pourville-sur-Mer','Paisaje impresionista','Caminata fácil']}},
+  {id:'apero',icon:'🍏',price:'65€',sceneEl:`<svg width="100%" height="90" viewBox="0 0 320 90"><rect width="320" height="90" fill="#854f0b"/><rect x="0" y="60" width="320" height="30" fill="#633806"/><ellipse cx="150" cy="48" rx="11" ry="26" fill="none" stroke="#f4f0e8" stroke-width="1.5"/><ellipse cx="150" cy="34" rx="11" ry="9" fill="rgba(244,240,232,0.15)"/><circle cx="220" cy="55" r="12" fill="none" stroke="#c8e0a0" stroke-width="1.5"/><circle cx="235" cy="60" r="9" fill="none" stroke="#c8e0a0" stroke-width="1.5"/><text x="160" y="82" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)" font-family="Arial">Cider · Calvados · Normandy</text></svg>`,
+   en:{title:'Norman Apéro',meta:'2h30 · cider, calvados & local snacks',desc:"A proper Norman apéro in a cosy spot near the harbour — artisanal cider, a taste of calvados, and local snacks like andouille de Dieppe and buckwheat galettes. Warm, convivial, unmistakably Norman.",tags:['Norman cider','Calvados tasting','Local snacks','Convivial']},
+   fr:{title:'Apéro Normand',meta:'2h30 · cidre, calvados & spécialités locales',desc:"Un véritable apéro normand dans un lieu chaleureux près du port — cidre artisanal, dégustation de calvados et spécialités locales comme l'andouille de Dieppe et les galettes de sarrasin.",tags:['Cidre normand','Dégustation calvados','Spécialités locales','Convivialité']},
+   es:{title:'Aperitivo Normando',meta:'2h30 · sidra, calvados & tapas locales',desc:"Un auténtico aperitivo normando en un rincón acogedor cerca del puerto — sidra artesanal, una cata de calvados y tapas locales como la andouille de Dieppe y las galettes de trigo sarraceno.",tags:['Sidra normanda','Cata de calvados','Tapas locales','Ambiente festivo']}},
+  {id:'custom',icon:'🎯',price:null,sceneEl:`<svg width="100%" height="90" viewBox="0 0 320 90"><rect width="320" height="90" fill="#2c4a5e"/><circle cx="160" cy="45" r="35" fill="none" stroke="#c4d5dc" stroke-width="1.5" stroke-dasharray="5,3"/><circle cx="160" cy="45" r="22" fill="none" stroke="#c4d5dc" stroke-width="1"/><circle cx="160" cy="45" r="10" fill="none" stroke="#d4a0b0" stroke-width="2"/><circle cx="160" cy="45" r="3" fill="#d4a0b0"/><line x1="160" y1="5" x2="160" y2="15" stroke="#c4d5dc" stroke-width="1.5"/><line x1="160" y1="75" x2="160" y2="85" stroke="#c4d5dc" stroke-width="1.5"/><line x1="120" y1="45" x2="130" y2="45" stroke="#c4d5dc" stroke-width="1.5"/><line x1="190" y1="45" x2="200" y2="45" stroke="#c4d5dc" stroke-width="1.5"/><text x="160" y="82" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)" font-family="Arial">Your perfect tour · On demand</text></svg>`,
+   en:{title:'Bespoke Tour',meta:'Fully tailored to you',desc:'Have something specific in mind? Antoine designs personalised tours of Dieppe and the Normandy coast for individuals, families or groups.',tags:['Fully personalised','Any theme','Groups welcome'],priceLabel:'On request'},
+   fr:{title:'Tour Sur Mesure',meta:'Entièrement personnalisé',desc:"Une envie particulière ? Antoine crée des visites personnalisées de Dieppe et de la côte normande pour les individuels, familles ou groupes.",tags:['Entièrement personnalisé','Thème libre','Groupes bienvenus'],priceLabel:'Sur devis'},
+   es:{title:'Tour a Medida',meta:'Completamente personalizado',desc:'¿Algo especial en mente? Antoine diseña visitas personalizadas de Dieppe y la costa de Normandía para individuos, familias o grupos.',tags:['Totalmente personalizado','Cualquier temática','Grupos bienvenidos'],priceLabel:'A consultar'}}
+];
+
+const UI={
+  en:{lblTours:'Our tours',lblContact:'Contact Antoine',lblBook:'Book a tour',heroTag:'Authentic tours on the Normandy coast',heroGuide:'with Antoine · Your local guide',langsRow:'Tours in English, French & Spanish',footer:'Your authentic Dieppe experience · Book your tour today',waLabel:'WhatsApp Antoine',callLabel:'Call +33 6 26 39 17 83',flName:'Your name',flPhone:'Your WhatsApp / phone number',flTour:'Tour',flDate:'Preferred date',flGroup:'Number of people',flMsg:'Message / special requests',tourPh:'— choose a tour —',namePh:'e.g. Maria Garcia',phonePh:'6 26 39 17 83',datePh:'Choose a date above',groupPh:'e.g. 4',msgPh:'Any allergies, questions, special wishes…',sendLabel:'Send booking request to Antoine',errorMsg:'Please fill in all required fields.',successMsg:'✓ WhatsApp is opening — Antoine will get your details!',shareCopy:'Copy link',shareShare:'Share',adminToggle:'Antoine — Manage availability'},
+  fr:{lblTours:'Nos visites',lblContact:'Contacter Antoine',lblBook:'Réserver une visite',heroTag:'Visites authentiques sur la côte normande',heroGuide:'avec Antoine · Votre guide local',langsRow:'Visites en français, anglais et espagnol',footer:'Votre expérience authentique à Dieppe · Réservez votre visite',waLabel:'WhatsApp Antoine',callLabel:'Appeler +33 6 26 39 17 83',flName:'Votre nom',flPhone:'Votre WhatsApp / téléphone',flTour:'Visite',flDate:'Date souhaitée',flGroup:'Nombre de personnes',flMsg:'Message / demandes spéciales',tourPh:'— choisir une visite —',namePh:'ex. Marie Dupont',phonePh:'6 12 34 56 78',datePh:'Choisissez une date ci-dessus',groupPh:'ex. 4',msgPh:'Allergies, questions, demandes particulières…',sendLabel:'Envoyer la demande à Antoine via WhatsApp',errorMsg:'Merci de remplir tous les champs obligatoires.',successMsg:'✓ WhatsApp s\'ouvre — Antoine recevra vos informations !',shareCopy:'Copier le lien',shareShare:'Partager',adminToggle:'Antoine — Gérer vos disponibilités'},
+  es:{lblTours:'Nuestras visitas',lblContact:'Contactar a Antoine',lblBook:'Reservar una visita',heroTag:'Visitas auténticas en la costa de Normandía',heroGuide:'con Antoine · Su guía local',langsRow:'Visitas en inglés, francés y español',footer:'Su experiencia auténtica en Dieppe · Reserve hoy',waLabel:'WhatsApp Antoine',callLabel:'Llamar +33 6 26 39 17 83',flName:'Su nombre',flPhone:'Su WhatsApp / teléfono',flTour:'Visita',flDate:'Fecha preferida',flGroup:'Número de personas',flMsg:'Mensaje / solicitudes especiales',tourPh:'— elegir una visita —',namePh:'ej. María García',phonePh:'612 345 678',datePh:'Elige una fecha arriba',groupPh:'ej. 4',msgPh:'Alergias, preguntas, peticiones especiales…',sendLabel:'Enviar solicitud a Antoine por WhatsApp',errorMsg:'Por favor, complete todos los campos obligatorios.',successMsg:'✓ Abriendo WhatsApp — ¡Antoine recibirá sus datos!',shareCopy:'Copiar enlace',shareShare:'Compartir',adminToggle:'Antoine — Gestionar disponibilidad'}
+};
+
+let lang='en';
+
+function buildTours(){
+  const c=document.getElementById('tours-container');
+  c.innerHTML='';
+  TOURS.forEach(t=>{
+    const d=t[lang];
+    const priceHTML=t.price?`<div class="tprice">${t.price}<small>/pers</small></div>`:`<div class="tprice" style="font-size:11px;color:#6a7478">${d.priceLabel}</div>`;
+    const tagsHTML=d.tags.map(tg=>`<span class="tag">${tg}</span>`).join('');
+    const btnLabel={en:'Book this tour',fr:'Réserver ce tour',es:'Reservar este tour'}[lang];
+    c.innerHTML+=`<div class="tour-card">
+      <div class="tour-header" onclick="toggle('${t.id}')">
+        <div class="tour-art">${t.icon}</div>
+        <div class="tour-info"><div class="ttitle">${d.title}</div><div class="tmeta">${d.meta}</div></div>
+        ${priceHTML}
+        <div class="chev" id="chev-${t.id}">▼</div>
+      </div>
+      <div class="tour-body" id="body-${t.id}">
+        <div class="tour-inner">
+          <div class="tour-scene">${t.sceneEl}</div>
+          <div class="tdesc">${d.desc}</div>
+          <div class="tags">${tagsHTML}</div>
+          <button class="wa-btn-card" onclick="bookTourDirect('${t.id}')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            ${btnLabel}
+          </button>
+        </div>
+      </div>
+    </div>`;
+  });
+  buildSelect();
+}
+
+function buildSelect(){
+  const sel=document.getElementById('f-tour');
+  const ui=UI[lang];
+  sel.innerHTML=`<option value="">${ui.tourPh}</option>`;
+  TOURS.forEach(t=>{ sel.innerHTML+=`<option value="${t[lang].title}">${t[lang].title}</option>`; });
+}
+
+function toggle(id){
+  const body=document.getElementById('body-'+id);
+  const chev=document.getElementById('chev-'+id);
+  const isOpen=body.classList.contains('open');
+  document.querySelectorAll('.tour-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.chev').forEach(c=>c.classList.remove('open'));
+  if(!isOpen){body.classList.add('open');chev.classList.add('open');}
+}
+
+function bookTourDirect(id){
+  const t=TOURS.find(t=>t.id===id);
+  const d=t[lang];
+  const msgs={
+    en:`Hello Antoine! I'd like to book the *${d.title}* (${d.meta}) in Dieppe. Please let me know your availability.`,
+    fr:`Bonjour Antoine ! Je souhaite réserver le *${d.title}* (${d.meta}) à Dieppe. Merci de me donner vos disponibilités.`,
+    es:`¡Hola Antoine! Me gustaría reservar el *${d.title}* (${d.meta}) en Dieppe. Por favor, dígame su disponibilidad.`
+  };
+  window.open('https://wa.me/33626391783?text='+encodeURIComponent(msgs[lang]),'_blank');
+}
+
+function sendBooking(){
+  const name=document.getElementById('f-name').value.trim();
+  const code=document.getElementById('f-country-code').value;
+  const phone=document.getElementById('f-phone').value.trim();
+  const tour=document.getElementById('f-tour').value.trim();
+  const date=document.getElementById('f-date').value.trim();
+  const group=document.getElementById('f-group').value.trim();
+  const msg=document.getElementById('f-msg').value.trim();
+  const err=document.getElementById('error-msg');
+  if(!name||!phone||!tour||!date||!group){err.style.display='block';return;}
+  err.style.display='none';
+  const fullPhone = code + ' ' + phone;
+  const msgs={
+    en:`🗓 *New booking request — Savor & Stories (Dieppe)*\n\n👤 Name: ${name}\n📱 Contact: ${fullPhone}\n🎯 Tour: ${tour}\n📅 Date: ${date}\n👥 People: ${group}${msg?'\n💬 Message: '+msg:''}`,
+    fr:`🗓 *Nouvelle demande de réservation — Savor & Stories (Dieppe)*\n\n👤 Nom : ${name}\n📱 Contact : ${fullPhone}\n🎯 Visite : ${tour}\n📅 Date : ${date}\n👥 Personnes : ${group}${msg?'\n💬 Message : '+msg:''}`,
+    es:`🗓 *Nueva solicitud de reserva — Savor & Stories (Dieppe)*\n\n👤 Nombre: ${name}\n📱 Contacto: ${fullPhone}\n🎯 Visita: ${tour}\n📅 Fecha: ${date}\n👥 Personas: ${group}${msg?'\n💬 Mensaje: '+msg:''}`
+  };
+  window.open('https://wa.me/33626391783?text='+encodeURIComponent(msgs[lang]),'_blank');
+  document.getElementById('success-msg').style.display='block';
+  setTimeout(()=>document.getElementById('success-msg').style.display='none',5000);
+}
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lbtn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lbtn[onclick="setLang('${l}')"]`).classList.add('active');
+  const ui=UI[l];
+  document.getElementById('hero-tag').textContent=ui.heroTag;
+  document.getElementById('hero-guide').textContent=ui.heroGuide;
+  document.getElementById('lbl-tours').textContent=ui.lblTours;
+  document.getElementById('lbl-contact').textContent=ui.lblContact;
+  document.getElementById('lbl-book').textContent=ui.lblBook;
+  document.getElementById('wa-label').textContent=ui.waLabel;
+  document.getElementById('call-label').textContent=ui.callLabel;
+  document.getElementById('langs-row').textContent=ui.langsRow;
+  document.getElementById('fl-name').innerHTML=ui.flName+' <span class="required">*</span>';
+  document.getElementById('fl-phone').innerHTML=ui.flPhone+' <span class="required">*</span>';
+  document.getElementById('fl-tour').innerHTML=ui.flTour+' <span class="required">*</span>';
+  document.getElementById('fl-date').innerHTML=ui.flDate+' <span class="required">*</span>';
+  document.getElementById('fl-group').innerHTML=ui.flGroup+' <span class="required">*</span>';
+  document.getElementById('fl-msg').textContent=ui.flMsg;
+  document.getElementById('f-name').placeholder=ui.namePh;
+  document.getElementById('f-phone').placeholder=ui.phonePh;
+  document.getElementById('f-group').placeholder=ui.groupPh;
+  document.getElementById('f-msg').placeholder=ui.msgPh;
+  document.getElementById('send-btn-label').textContent=ui.sendLabel;
+  document.getElementById('error-msg').textContent=ui.errorMsg;
+  document.getElementById('footer-text').textContent=ui.footer;
+  document.getElementById('share-copy').textContent=ui.shareCopy;
+  document.getElementById('share-share').textContent=ui.shareShare;
+  document.getElementById('admin-toggle-label').textContent=ui.adminToggle;
+  renderCalendar();
+  buildTours();
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(()=>{
+    const s=document.getElementById('share-copy');
+    s.textContent='✓ Copied!';
+    setTimeout(()=>s.textContent=UI[lang].shareCopy,2000);
+  });
+}
+function shareNative(){
+  if(navigator.share){navigator.share({title:'Savor & Stories — Dieppe Tours',url:window.location.href});}
+  else copyLink();
+}
+
+// Init
+buildTours();
+initCalendar();
+</script>
+</body>
+</html>
