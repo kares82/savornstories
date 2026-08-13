@@ -215,7 +215,7 @@ Find the `TOURS` array and update prices:
 ### Update Contact Information
 Search for phone number and email, replace:
 - Phone: `+33626391783` → your number
-- Email: `savornstories@gmail.com` → your email
+- Email: `contact@savornstories.com` → your email
 - WhatsApp link: `https://wa.me/33626391783` → your number
 
 ### Change Admin PIN
@@ -321,7 +321,7 @@ Potential features for future versions:
 ## 📞 Contact & Support
 
 - **Website**: https://savorstories.com
-- **Email**: savornstories@gmail.com
+- **Email**: contact@savornstories.com
 - **WhatsApp**: +33 6 26 39 17 83
 - **Tour Guide**: Antoine
 - **Location**: Bordeaux, France
