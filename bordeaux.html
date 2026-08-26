@@ -71,6 +71,13 @@ body{font-family:Arial,sans-serif;background:#f4f0e8;color:#2c2020;max-width:480
 .wa-btn-card{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:10px;background:#25d366;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif;transition:opacity .2s}
 .wa-btn-card:hover{opacity:.88}
 .contact-box{background:#fff;border-radius:14px;border:0.5px solid #c8d5c4;padding:16px;margin-top:4px}
+.game-card{display:flex;align-items:center;gap:12px;background:#fff;border-radius:14px;border:0.5px solid #c8d5c4;padding:14px 16px;text-decoration:none;transition:transform .15s}
+.game-card:active{transform:scale(.98)}
+.game-card-icon{font-size:28px;flex-shrink:0}
+.game-card-text{flex:1;min-width:0}
+.game-card-title{font-size:14px;font-weight:bold;color:#6b1a2e}
+.game-card-sub{font-size:11px;color:#7a6a6a;margin-top:2px;line-height:1.4}
+.game-card-arrow{font-size:16px;color:#3d5c3a;flex-shrink:0}
 .wa-big{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#25d366;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif;margin-bottom:12px;transition:opacity .2s;text-decoration:none}
 .wa-big:hover{opacity:.88}
 .wa-number{font-size:12px;opacity:.9;display:block;margin-top:2px;font-weight:normal}
@@ -160,6 +167,15 @@ body{font-family:Arial,sans-serif;background:#f4f0e8;color:#2c2020;max-width:480
 <div class="body">
   <div class="slabel" id="lbl-tours">Our tours</div>
   <div id="tours-container"></div>
+
+  <a class="game-card" href="bordeaux-game.html" style="margin-top:16px">
+    <div class="game-card-icon">🍷</div>
+    <div class="game-card-text">
+      <div class="game-card-title">Play: Blind Taste, Bordeaux</div>
+      <div class="game-card-sub">Free 60-second game — wine, history, monuments &amp; food</div>
+    </div>
+    <div class="game-card-arrow">→</div>
+  </a>
 
   <div style="margin-top:20px">
     <div class="slabel" id="lbl-contact">Contact Antoine</div>

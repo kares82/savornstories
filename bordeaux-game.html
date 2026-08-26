@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blind Taste, Bordeaux — Wine Guessing Game | Savor &amp; Stories</title>
+<meta name="description" content="A 6-question game on Bordeaux wine, history, monuments and food — then book the real tour with Antoine."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://savornstories.com/bordeaux-game"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Blind Taste, Bordeaux — Wine Guessing Game"/>
+<meta property="og:description" content="Guess Bordeaux's wine, history, monuments and food. Free game."/>
+<meta property="og:url" content="https://savornstories.com/bordeaux-game"/>
+<meta property="og:site_name" content="Savor & Stories"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f0e8;color:#2c2020;max-width:480px;margin:0 auto;overflow-x:hidden}
+.back-bar{background:#2c4432;padding:10px 16px}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:#e8f0e5;text-decoration:none;font-size:12px;font-weight:bold;letter-spacing:.03em}
+.back-link:active{opacity:.7}
+
+.hero{background:#3d5c3a;padding:30px 20px 26px;text-align:center;position:relative;overflow:hidden}
+.hero-icon{font-size:34px;display:block;margin-bottom:6px;animation:float 3s ease-in-out infinite}
+.hero-loc{font-size:10px;letter-spacing:.2em;color:#c8d5c4;text-transform:uppercase;margin-bottom:5px}
+.hero-name{font-size:26px;font-weight:bold;color:#f4f0e8;letter-spacing:.02em;line-height:1.2}
+.divider{width:40px;height:2px;background:#9e2b47;margin:10px auto}
+.hero-tag{font-size:13px;color:#e8e2d4;font-style:italic}
+.lang-bar{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.lbtn{padding:6px 18px;border:1.5px solid rgba(255,255,255,0.3);border-radius:20px;font-size:11px;cursor:pointer;letter-spacing:.1em;background:transparent;color:#f4f0e8;font-family:Arial,sans-serif;transition:all .2s}
+.lbtn.active{background:#f4f0e8;color:#3d5c3a;border-color:#f4f0e8;font-weight:bold}
+
+.body{padding:20px 16px 28px;background:#f4f0e8}
+
+.progress{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
+.dot{width:9px;height:9px;border-radius:50%;background:#dcd4c0;transition:background .3s, transform .3s}
+.dot.done{background:#3d5c3a}
+.dot.current{background:#6b1a2e;transform:scale(1.3)}
+
+.intro-card{background:#fff;border-radius:16px;border:0.5px solid #e0d8c8;padding:26px 20px;text-align:center}
+.intro-card h1{font-size:19px;color:#3d5c3a;margin-bottom:10px;line-height:1.3}
+.intro-card p{font-size:13px;color:#5a4a4a;line-height:1.6;margin-bottom:20px}
+.rules{display:flex;justify-content:center;gap:18px;margin-bottom:22px}
+.rule{text-align:center}
+.rule-num{font-size:20px;font-weight:bold;color:#6b1a2e}
+.rule-label{font-size:10px;color:#7a6a6a;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+.btn-primary{display:block;width:100%;padding:15px;background:linear-gradient(135deg,#3d5c3a,#6b1a2e);color:#fff;border:none;border-radius:14px;font-size:15px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif;transition:opacity .2s, transform .1s}
+.btn-primary:hover{opacity:.9}
+.btn-primary:active{transform:scale(.98)}
+
+.round-card{background:#fff;border-radius:16px;border:0.5px solid #e0d8c8;padding:24px 20px;animation:slideIn .35s ease}
+.round-label{font-size:10px;letter-spacing:.15em;color:#9a8a6a;text-transform:uppercase;font-weight:bold;text-align:center;margin-bottom:8px}
+.cat-tag-wrap{text-align:center;margin-bottom:10px}
+.cat-tag{display:inline-block;background:#e8f0e5;color:#3d5c3a;font-size:10px;font-weight:bold;letter-spacing:.1em;padding:3px 12px;border-radius:20px}
+.glass{display:flex;justify-content:center;margin-bottom:10px}
+.note{font-size:16px;font-style:italic;color:#3d2c2c;text-align:center;line-height:1.5;margin-bottom:22px;min-height:48px}
+
+.option{display:block;width:100%;text-align:left;padding:14px 16px;margin-bottom:10px;background:#fdfbf7;border:1.5px solid #e0d8c8;border-radius:12px;font-size:14px;font-weight:bold;color:#3d2c2c;cursor:pointer;font-family:Arial,sans-serif;transition:border-color .2s, background .2s, transform .1s}
+.option:active{transform:scale(.98)}
+.option:disabled{cursor:default}
+.option.correct{background:#e8f0e5;border-color:#3d5c3a;color:#2c4432;animation:pulseGreen .5s ease}
+.option.wrong{background:#f6e6e6;border-color:#9e2b47;color:#6b1a2e;animation:shake .4s ease}
+.option.dim{opacity:.45}
+
+.feedback{margin-top:16px;padding:14px 16px;border-radius:12px;background:#f4f0e8;border:0.5px solid #e0d8c8;font-size:12.5px;color:#5a4a4a;line-height:1.6;opacity:0;max-height:0;overflow:hidden;transition:opacity .3s, max-height .4s}
+.feedback.show{opacity:1;max-height:200px;margin-top:16px}
+.feedback strong{color:#3d5c3a}
+
+.next-btn{margin-top:16px}
+
+.result-card{background:#fff;border-radius:16px;border:0.5px solid #e0d8c8;padding:30px 22px;text-align:center;animation:slideIn .4s ease}
+.result-badge{font-size:52px;display:block;margin-bottom:8px;animation:badgePop .5s cubic-bezier(.34,1.56,.64,1)}
+.result-score{font-size:34px;font-weight:bold;color:#6b1a2e;letter-spacing:.02em}
+.result-title{font-size:17px;font-weight:bold;color:#3d5c3a;margin:6px 0 10px}
+.result-desc{font-size:13px;color:#5a4a4a;line-height:1.6;margin-bottom:22px}
+
+.share-box{background:#f4f0e8;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:12.5px;color:#5a4a4a;text-align:left;line-height:1.6}
+.share-box .tag{display:inline-block;background:#e8f0e5;color:#3d5c3a;font-size:10px;font-weight:bold;padding:2px 8px;border-radius:20px;margin-bottom:6px}
+
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px;background:#25d366;color:#fff;border:none;border-radius:14px;font-size:14px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif;margin-bottom:10px;text-decoration:none;transition:opacity .2s}
+.wa-btn:hover{opacity:.88}
+.replay-btn{display:block;width:100%;padding:13px;background:transparent;color:#6b1a2e;border:1.5px solid #e0d8c8;border-radius:14px;font-size:13px;font-weight:bold;cursor:pointer;font-family:Arial,sans-serif}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulseGreen{0%{box-shadow:0 0 0 0 rgba(61,92,58,.4)}70%{box-shadow:0 0 0 10px rgba(61,92,58,0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes badgePop{0%{transform:scale(0) rotate(-15deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<div class="back-bar">
+  <a class="back-link" href="bordeaux.html">&#8592; Back to Bordeaux tours</a>
+</div>
+
+<div class="hero">
+  <span class="hero-icon">🍷</span>
+  <div class="hero-loc">Savor &amp; Stories · Bordeaux</div>
+  <div class="hero-name">Blind Taste, Bordeaux</div>
+  <div class="divider"></div>
+  <div class="hero-tag" id="heroTag">Can your nose tell the difference?</div>
+  <div class="lang-bar">
+    <button class="lbtn active" id="lbtn-en" onclick="setLang('en')">EN</button>
+    <button class="lbtn" id="lbtn-fr" onclick="setLang('fr')">FR</button>
+    <button class="lbtn" id="lbtn-es" onclick="setLang('es')">ES</button>
+  </div>
+</div>
+
+<div class="body">
+  <div class="progress" id="progress"></div>
+  <div id="stage"></div>
+</div>
+
+<script>
+var UI = {
+  en:{heroTag:'Can your nose tell the difference?',
+    introH1:'6 questions.<br>Wine, history,<br>monuments &amp; food.',
+    introP:'A mix of real Bordeaux — read each clue, pick your answer. Right or wrong, you\'ll learn something you\'ll actually see or taste on the real tour.',
+    ruleQuestions:'Questions', ruleRoughly:'Roughly', ruleCost:'Cost',
+    startBtn:'Start the challenge', questionLabel:'Question', ofLabel:'of',
+    nextBtn:'Next round', seeScoreBtn:'See my score',
+    yourResult:'Your result', bordeauxScore:'Bordeaux score',
+    beatIt:'Think you can beat it? Play again or find out for real on the tour.',
+    bookBtn:'Book the real tour', playAgainBtn:'Play again',
+    waMsg:function(score,total,title){return "Hi Antoine! I just played Blind Taste, Bordeaux and scored "+score+"/"+total+" ("+title+"). I'd like to book the real Food & Wine Tour to see if I'm actually right \u{1F377}";}
+  },
+  fr:{heroTag:'Votre nez fera-t-il la différence ?',
+    introH1:'6 questions.<br>Vin, histoire,<br>monuments et gastronomie.',
+    introP:'Un vrai mélange de Bordeaux — lisez chaque indice, choisissez votre réponse. Bonne ou mauvaise, vous apprendrez quelque chose que vous verrez ou goûterez vraiment pendant la visite.',
+    ruleQuestions:'Questions', ruleRoughly:'Environ', ruleCost:'Coût',
+    startBtn:'Commencer le défi', questionLabel:'Question', ofLabel:'sur',
+    nextBtn:'Manche suivante', seeScoreBtn:'Voir mon score',
+    yourResult:'Votre résultat', bordeauxScore:'score Bordeaux',
+    beatIt:'Vous pensez pouvoir faire mieux ? Rejouez ou vérifiez pour de vrai pendant la visite.',
+    bookBtn:'Réserver la vraie visite', playAgainBtn:'Rejouer',
+    waMsg:function(score,total,title){return "Bonjour Antoine ! Je viens de jouer à Blind Taste, Bordeaux et j'ai obtenu "+score+"/"+total+" ("+title+"). J'aimerais réserver la vraie visite Gastronomie & Vin pour voir si j'ai vraiment raison \u{1F377}";}
+  },
+  es:{heroTag:'¿Notará tu nariz la diferencia?',
+    introH1:'6 preguntas.<br>Vino, historia,<br>monumentos y gastronomía.',
+    introP:'Una mezcla real de Burdeos — lee cada pista y elige tu respuesta. Aciertes o no, aprenderás algo que verás o probarás de verdad en el tour.',
+    ruleQuestions:'Preguntas', ruleRoughly:'Aprox.', ruleCost:'Coste',
+    startBtn:'Empezar el reto', questionLabel:'Pregunta', ofLabel:'de',
+    nextBtn:'Siguiente ronda', seeScoreBtn:'Ver mi puntuación',
+    yourResult:'Tu resultado', bordeauxScore:'puntuación Burdeos',
+    beatIt:'¿Crees que puedes superarlo? Vuelve a jugar o compruébalo de verdad en el tour.',
+    bookBtn:'Reservar el tour real', playAgainBtn:'Jugar de nuevo',
+    waMsg:function(score,total,title){return "¡Hola Antoine! Acabo de jugar a Blind Taste, Bordeaux y obtuve "+score+"/"+total+" ("+title+"). Me gustaría reservar el tour real de Comida y Vino para ver si realmente acerté \u{1F377}";}
+  }
+};
+
+var ICON_WINE = '<svg viewBox="0 0 64 64" width="44" height="44"><path d="M22 8h20l-1.5 15c-.8 6.5-6.5 10-8.5 10s-7.7-3.5-8.5-10L22 8z" fill="#8a2740" stroke="#6b1a2e" stroke-width="2"/><line x1="32" y1="33" x2="32" y2="50" stroke="#6b1a2e" stroke-width="2.5"/><line x1="22" y1="55" x2="42" y2="55" stroke="#6b1a2e" stroke-width="2.5" stroke-linecap="round"/><line x1="32" y1="50" x2="32" y2="55" stroke="#6b1a2e" stroke-width="2.5"/></svg>';
+var ICON_COLUMN = '<svg viewBox="0 0 64 64" width="44" height="44"><rect x="14" y="6" width="36" height="6" fill="#6b1a2e"/><rect x="18" y="12" width="4" height="36" fill="#6b1a2e"/><rect x="30" y="12" width="4" height="36" fill="#6b1a2e"/><rect x="42" y="12" width="4" height="36" fill="#6b1a2e"/><rect x="12" y="48" width="40" height="6" fill="#6b1a2e"/></svg>';
+var ICON_SPIRE = '<svg viewBox="0 0 64 64" width="44" height="44"><polygon points="32,4 24,22 40,22" fill="#6b1a2e"/><rect x="26" y="22" width="12" height="30" fill="#6b1a2e"/><rect x="22" y="52" width="20" height="6" fill="#6b1a2e"/><rect x="29" y="30" width="2.5" height="8" fill="#f4f0e8"/><rect x="32.5" y="30" width="2.5" height="8" fill="#f4f0e8"/></svg>';
+var ICON_CANELE = '<svg viewBox="0 0 64 64" width="44" height="44"><polygon points="18,20 46,20 40,54 24,54" fill="#3d2410"/><ellipse cx="32" cy="20" rx="14" ry="4" fill="#1f1006"/><line x1="22" y1="24" x2="26.5" y2="53" stroke="#6b4020" stroke-width="1.3"/><line x1="27.5" y1="22" x2="30" y2="53.5" stroke="#6b4020" stroke-width="1.3"/><line x1="32" y1="22" x2="32" y2="54" stroke="#6b4020" stroke-width="1.3"/><line x1="36.5" y1="22" x2="34" y2="53.5" stroke="#6b4020" stroke-width="1.3"/><line x1="42" y1="24" x2="37.5" y2="53" stroke="#6b4020" stroke-width="1.3"/></svg>';
+var ICON_BADGE = '<svg viewBox="0 0 64 64" width="44" height="44"><circle cx="32" cy="30" r="14" fill="none" stroke="#6b1a2e" stroke-width="2.5"/><path d="M32 20l2.5 6 6.5.5-5 4.5 1.5 6.5-5.5-3.5-5.5 3.5 1.5-6.5-5-4.5 6.5-.5z" fill="#6b1a2e"/><path d="M14 46c4 6 12 10 18 10s14-4 18-10" fill="none" stroke="#3d5c3a" stroke-width="2.5" stroke-linecap="round"/></svg>';
+var ICON_THEATRE = '<svg viewBox="0 0 64 64" width="44" height="44"><polygon points="32,6 12,18 52,18" fill="#6b1a2e"/><rect x="12" y="18" width="40" height="4" fill="#6b1a2e"/><rect x="16" y="22" width="4" height="26" fill="#6b1a2e"/><rect x="24" y="22" width="4" height="26" fill="#6b1a2e"/><rect x="32" y="22" width="4" height="26" fill="#6b1a2e"/><rect x="40" y="22" width="4" height="26" fill="#6b1a2e"/><rect x="12" y="48" width="40" height="6" fill="#6b1a2e"/></svg>';
+var ICON_MOONRIVER = '<svg viewBox="0 0 64 64" width="44" height="44"><path d="M40 10a18 18 0 100 34 14 14 0 010-34z" fill="#6b1a2e"/><path d="M10 48q6-6 12 0t12 0 12 0 12 0" fill="none" stroke="#3d5c3a" stroke-width="2.5" stroke-linecap="round"/></svg>';
+
+var ROUNDS = [
+  { glass:ICON_WINE,
+    en:{cat:'WINE', note:'Blackcurrant, cedar and firm, gripping tannins — which style is this?', options:['Left Bank Cabernet Sauvignon','Right Bank Merlot','Sauternes'], correct:0, fact:'<strong>Left Bank reds</strong> (Médoc, Pauillac, Margaux) lean on Cabernet Sauvignon grown in gravelly soil — that\'s where the firm tannins and blackcurrant come from.'},
+    fr:{cat:'VIN', note:'Cassis, cèdre et tanins fermes et serrés — quel style est-ce ?', options:['Cabernet Sauvignon de la Rive Gauche','Merlot de la Rive Droite','Sauternes'], correct:0, fact:'Les <strong>rouges de la Rive Gauche</strong> (Médoc, Pauillac, Margaux) reposent sur le Cabernet Sauvignon planté en sol graveleux — d\'où les tanins fermes et le cassis.'},
+    es:{cat:'VINO', note:'Grosella negra, cedro y taninos firmes y prietos — ¿qué estilo es?', options:['Cabernet Sauvignon de la Orilla Izquierda','Merlot de la Orilla Derecha','Sauternes'], correct:0, fact:'Los <strong>tintos de la Orilla Izquierda</strong> (Médoc, Pauillac, Margaux) se apoyan en el Cabernet Sauvignon cultivado en suelo de grava — de ahí los taninos firmes y la grosella negra.'}
+  },
+  { glass:ICON_COLUMN,
+    en:{cat:'HISTORY', note:'Before it was Bordeaux, the Romans knew this city by another name. Which one?', options:['Burdigala','Lutetia','Massilia'], correct:0, fact:'The Romans called it <strong>Burdigala</strong> — the name slowly evolved over centuries into "Bordeaux." Lutetia was Paris; Massilia was Marseille.'},
+    fr:{cat:'HISTOIRE', note:'Avant de s\'appeler Bordeaux, les Romains connaissaient cette ville sous un autre nom. Lequel ?', options:['Burdigala','Lutèce','Massilia'], correct:0, fact:'Les Romains l\'appelaient <strong>Burdigala</strong> — le nom a lentement évolué au fil des siècles pour devenir « Bordeaux ». Lutèce était Paris ; Massilia était Marseille.'},
+    es:{cat:'HISTORIA', note:'Antes de llamarse Burdeos, los romanos conocían esta ciudad con otro nombre. ¿Cuál?', options:['Burdigala','Lutecia','Massilia'], correct:0, fact:'Los romanos la llamaban <strong>Burdigala</strong> — el nombre evolucionó lentamente a lo largo de los siglos hasta convertirse en «Burdeos». Lutecia era París; Massilia era Marsella.'}
+  },
+  { glass:ICON_SPIRE,
+    en:{cat:'MONUMENT', note:'Bordeaux Cathedral\'s bell tower stands as its own separate building nearby. Why?', options:['The cathedral\'s foundations couldn\'t bear the bells\' weight','It was added centuries later as a war memorial','It was relocated after a fire'], correct:0, fact:'The <strong>Tour Pey-Berland</strong> was built apart from Cathédrale Saint-André because the ground beneath the cathedral couldn\'t support the weight of its bells.'},
+    fr:{cat:'MONUMENT', note:'Le clocher de la cathédrale de Bordeaux se dresse à part, dans un bâtiment séparé tout proche. Pourquoi ?', options:['Les fondations de la cathédrale ne pouvaient pas supporter le poids des cloches','Il a été ajouté des siècles plus tard comme mémorial de guerre','Il a été déplacé après un incendie'], correct:0, fact:'La <strong>tour Pey-Berland</strong> a été construite à l\'écart de la cathédrale Saint-André car le sol sous la cathédrale ne pouvait pas supporter le poids de ses cloches.'},
+    es:{cat:'MONUMENTO', note:'El campanario de la Catedral de Burdeos se alza como un edificio separado muy cerca. ¿Por qué?', options:['Los cimientos de la catedral no podían soportar el peso de las campanas','Se añadió siglos después como monumento de guerra','Fue trasladado tras un incendio'], correct:0, fact:'La <strong>Torre Pey-Berland</strong> se construyó separada de la Catedral de San Andrés porque el suelo bajo la catedral no podía soportar el peso de sus campanas.'}
+  },
+  { glass:ICON_CANELE,
+    en:{cat:'FOOD', note:'Canelé, Bordeaux\'s signature little cake, is traditionally flavoured with rum and…', options:['Vanilla','Cinnamon','Orange blossom'], correct:0, fact:'<strong>Canelé</strong> — caramelized outside, custard-soft inside, baked in copper molds — has been a Bordeaux specialty for centuries.'},
+    fr:{cat:'GASTRONOMIE', note:'Le canelé, la petite spécialité emblématique de Bordeaux, est traditionnellement parfumé au rhum et…', options:['Vanille','Cannelle','Fleur d\'oranger'], correct:0, fact:'Le <strong>canelé</strong> — caramélisé à l\'extérieur, moelleux comme un flan à l\'intérieur, cuit dans des moules en cuivre — est une spécialité bordelaise depuis des siècles.'},
+    es:{cat:'GASTRONOMÍA', note:'El canelé, el pequeño pastel emblemático de Burdeos, se aromatiza tradicionalmente con ron y…', options:['Vainilla','Canela','Flor de azahar'], correct:0, fact:'El <strong>canelé</strong> — caramelizado por fuera, tierno como un flan por dentro, horneado en moldes de cobre — es una especialidad de Burdeos desde hace siglos.'}
+  },
+  { glass:ICON_BADGE,
+    en:{cat:'HISTORY', note:'In 2007, Bordeaux\'s historic riverfront — the "Port of the Moon" — was given what UNESCO status?', options:['World Heritage Site','Biosphere Reserve','Global Geopark'], correct:0, fact:'Bordeaux\'s historic centre became a <strong>UNESCO World Heritage Site</strong> in 2007 — one of the largest urban World Heritage areas in the world.'},
+    fr:{cat:'HISTOIRE', note:'En 2007, les quais historiques de Bordeaux — le « Port de la Lune » — ont reçu quel statut UNESCO ?', options:['Patrimoine mondial','Réserve de biosphère','Géoparc mondial'], correct:0, fact:'Le centre historique de Bordeaux est devenu <strong>site du patrimoine mondial de l\'UNESCO</strong> en 2007 — l\'une des plus vastes zones urbaines classées au monde.'},
+    es:{cat:'HISTORIA', note:'En 2007, el histórico frente fluvial de Burdeos — el «Puerto de la Luna» — recibió qué distinción de la UNESCO?', options:['Patrimonio de la Humanidad','Reserva de la Biosfera','Geoparque Mundial'], correct:0, fact:'El centro histórico de Burdeos fue declarado <strong>Patrimonio de la Humanidad por la UNESCO</strong> en 2007 — una de las mayores áreas urbanas del mundo con esta distinción.'}
+  },
+  { glass:ICON_THEATRE,
+    en:{cat:'MONUMENT', note:'Bordeaux\'s 1780 Grand Théâtre is said to have inspired the grand staircase of which famous building?', options:['The Paris Opéra Garnier','Buckingham Palace','The Louvre'], correct:0, fact:'Architect Charles Garnier is said to have drawn on Bordeaux\'s <strong>Grand Théâtre</strong> when designing the staircase of the Paris Opera that bears his name.'},
+    fr:{cat:'MONUMENT', note:'Le Grand Théâtre de Bordeaux, construit en 1780, aurait inspiré le grand escalier de quel bâtiment célèbre ?', options:['L\'Opéra Garnier de Paris','Le palais de Buckingham','Le Louvre'], correct:0, fact:'L\'architecte Charles Garnier se serait inspiré du <strong>Grand Théâtre</strong> de Bordeaux pour dessiner l\'escalier de l\'Opéra de Paris qui porte son nom.'},
+    es:{cat:'MONUMENTO', note:'Se dice que el Grand Théâtre de Burdeos, de 1780, inspiró la gran escalera de qué edificio famoso?', options:['La Ópera Garnier de París','El Palacio de Buckingham','El Louvre'], correct:0, fact:'Se dice que el arquitecto Charles Garnier se inspiró en el <strong>Grand Théâtre</strong> de Burdeos para diseñar la escalera de la Ópera de París que lleva su nombre.'}
+  },
+  { glass:ICON_MOONRIVER,
+    en:{cat:'GEOGRAPHY', note:'Bordeaux\'s nickname "Port of the Moon" comes from a natural feature of the Garonne river. What is it?', options:['The river curves in a crescent through the city', 'Ships could only dock during a full moon', 'A moon-shaped lighthouse once stood at the port'], correct:0, fact:'The Garonne bends into a <strong>crescent shape</strong> as it passes through Bordeaux — giving the city its poetic nickname, "Port de la Lune" (Port of the Moon).'},
+    fr:{cat:'GÉOGRAPHIE', note:'Le surnom de Bordeaux, « Port de la Lune », vient d\'une particularité naturelle de la Garonne. Laquelle ?', options:['Le fleuve dessine un croissant en traversant la ville', 'Les bateaux ne pouvaient accoster qu\'à la pleine lune', 'Un phare en forme de lune se dressait autrefois au port'], correct:0, fact:'La Garonne forme un <strong>croissant</strong> en traversant Bordeaux — d\'où le surnom poétique de la ville, « Port de la Lune ».'},
+    es:{cat:'GEOGRAFÍA', note:'El apodo de Burdeos, «Puerto de la Luna», viene de una particularidad natural del río Garona. ¿Cuál?', options:['El río forma una media luna al atravesar la ciudad', 'Los barcos solo podían atracar en luna llena', 'Antiguamente había un faro con forma de luna en el puerto'], correct:0, fact:'El Garona forma una <strong>media luna</strong> al atravesar Burdeos — de ahí el poético apodo de la ciudad, «Puerto de la Luna».'}
+  }
+];
+
+var RESULT_TIERS = {
+  en:[
+    {min:6, badge:'👑', title:'True Bordeaux Expert', desc:'Six for six — wine, history, monuments and food. Come prove it in person.'},
+    {min:4, badge:'🎯', title:'Sharp Instincts', desc:'A strong showing. A tour with Antoine will fill in the rest.'},
+    {min:2, badge:'🍇', title:'Curious Traveler', desc:'Everyone starts somewhere — and Bordeaux is a very good place to start.'},
+    {min:0, badge:'🙈', title:'Delightfully Clueless', desc:'That takes a special kind of confidence. Antoine will fix this in person.'}
+  ],
+  fr:[
+    {min:6, badge:'👑', title:'Véritable expert de Bordeaux', desc:'Six sur six — vin, histoire, monuments et gastronomie. Venez le prouver en personne.'},
+    {min:4, badge:'🎯', title:'Instinct affûté', desc:'Belle performance. Une visite avec Antoine complètera le reste.'},
+    {min:2, badge:'🍇', title:'Voyageur curieux', desc:'Tout le monde commence quelque part — et Bordeaux est un excellent point de départ.'},
+    {min:0, badge:'🙈', title:'Adorablement perdu', desc:'Il faut une sacrée confiance pour ça. Antoine arrangera ça en personne.'}
+  ],
+  es:[
+    {min:6, badge:'👑', title:'Verdadero experto en Burdeos', desc:'Seis de seis — vino, historia, monumentos y gastronomía. Ven a demostrarlo en persona.'},
+    {min:4, badge:'🎯', title:'Instinto agudo', desc:'Buen resultado. Un tour con Antoine completará el resto.'},
+    {min:2, badge:'🍇', title:'Viajero curioso', desc:'Todos empiezan por algún lado — y Burdeos es un muy buen lugar para empezar.'},
+    {min:0, badge:'🙈', title:'Encantadoramente despistado', desc:'Eso requiere una confianza especial. Antoine lo arreglará en persona.'}
+  ]
+};
+
+var LANG = 'en', STAGE = 'intro', current = 0, score = 0, answered = false;
+var stage = document.getElementById('stage');
+var progressEl = document.getElementById('progress');
+
+function setLang(l){
+  LANG = l;
+  ['en','fr','es'].forEach(function(k){ document.getElementById('lbtn-'+k).classList.toggle('active', k===l); });
+  document.getElementById('heroTag').textContent = UI[LANG].heroTag;
+  if (STAGE === 'intro') showIntro();
+  else if (STAGE === 'round') showRound();
+  else showResults();
+}
+
+function renderProgress(){
+  var html = '';
+  for (var i = 0; i < ROUNDS.length; i++){
+    var cls = 'dot';
+    if (i < current) cls += ' done';
+    else if (i === current) cls += ' current';
+    html += '<div class="' + cls + '"></div>';
+  }
+  progressEl.innerHTML = html;
+}
+
+function showIntro(){
+  STAGE = 'intro';
+  var t = UI[LANG];
+  stage.innerHTML =
+    '<div class="intro-card">' +
+      '<h1>' + t.introH1 + '</h1>' +
+      '<p>' + t.introP + '</p>' +
+      '<div class="rules">' +
+        '<div class="rule"><div class="rule-num">' + ROUNDS.length + '</div><div class="rule-label">' + t.ruleQuestions + '</div></div>' +
+        '<div class="rule"><div class="rule-num">60s</div><div class="rule-label">' + t.ruleRoughly + '</div></div>' +
+        '<div class="rule"><div class="rule-num">0€</div><div class="rule-label">' + t.ruleCost + '</div></div>' +
+      '</div>' +
+      '<button class="btn-primary" onclick="startGame()">' + t.startBtn + '</button>' +
+    '</div>';
+}
+
+function startGame(){
+  current = 0; score = 0;
+  renderProgress();
+  showRound();
+}
+
+function showRound(){
+  STAGE = 'round';
+  answered = false;
+  renderProgress();
+  var t = UI[LANG];
+  var r = ROUNDS[current][LANG];
+  var optsHtml = '';
+  for (var i = 0; i < r.options.length; i++){
+    optsHtml += '<button class="option" data-i="' + i + '" onclick="pick(' + i + ')">' + r.options[i] + '</button>';
+  }
+  stage.innerHTML =
+    '<div class="round-card">' +
+      '<div class="round-label">' + t.questionLabel + ' ' + (current + 1) + ' ' + t.ofLabel + ' ' + ROUNDS.length + '</div>' +
+      '<div class="cat-tag-wrap"><span class="cat-tag">' + r.cat + '</span></div>' +
+      '<span class="glass">' + ROUNDS[current].glass + '</span>' +
+      '<div class="note">' + r.note + '</div>' +
+      '<div id="options">' + optsHtml + '</div>' +
+      '<div class="feedback" id="feedback">' + r.fact + '</div>' +
+      '<div class="next-btn" id="nextWrap" style="display:none">' +
+        '<button class="btn-primary" onclick="nextRound()">' + (current === ROUNDS.length - 1 ? t.seeScoreBtn : t.nextBtn) + '</button>' +
+      '</div>' +
+    '</div>';
+}
+
+function pick(i){
+  if (answered) return;
+  answered = true;
+  var r = ROUNDS[current][LANG];
+  var buttons = document.querySelectorAll('#options .option');
+  for (var j = 0; j < buttons.length; j++){
+    buttons[j].disabled = true;
+    if (j === r.correct) buttons[j].classList.add('correct');
+    else if (j === i) buttons[j].classList.add('wrong');
+    else buttons[j].classList.add('dim');
+  }
+  if (i === r.correct) score++;
+  document.getElementById('feedback').classList.add('show');
+  document.getElementById('nextWrap').style.display = 'block';
+}
+
+function nextRound(){
+  current++;
+  if (current >= ROUNDS.length) showResults();
+  else showRound();
+}
+
+function getTier(){
+  var tiers = RESULT_TIERS[LANG];
+  for (var i = 0; i < tiers.length; i++){
+    if (score >= tiers[i].min) return tiers[i];
+  }
+  return tiers[tiers.length - 1];
+}
+
+function showResults(){
+  STAGE = 'results';
+  progressEl.innerHTML = '';
+  var t = UI[LANG];
+  var tier = getTier();
+  var pct = Math.round((score / ROUNDS.length) * 100);
+  var waText = encodeURIComponent(t.waMsg(score, ROUNDS.length, tier.title));
+  stage.innerHTML =
+    '<div class="result-card">' +
+      '<span class="result-badge">' + tier.badge + '</span>' +
+      '<div class="result-score">' + score + '/' + ROUNDS.length + '</div>' +
+      '<div class="result-title">' + tier.title + '</div>' +
+      '<div class="result-desc">' + tier.desc + '</div>' +
+      '<div class="share-box"><span class="tag">' + t.yourResult + '</span><br>' +
+        pct + '% ' + t.bordeauxScore + ' — ' + tier.title + '. ' + t.beatIt +
+      '</div>' +
+      '<a class="wa-btn" href="https://wa.me/33626391783?text=' + waText + '" target="_blank">' +
+        '<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>' +
+        t.bookBtn +
+      '</a>' +
+      '<button class="replay-btn" onclick="showIntro()">' + t.playAgainBtn + '</button>' +
+    '</div>';
+}
+
+showIntro();
+</script>
+</body>
+</html>
