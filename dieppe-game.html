@@ -4,12 +4,12 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Crack the Raid — Dieppe History Game | Savor &amp; Stories</title>
-<meta name="description" content="Six clues on Dieppe's history, monuments and food — including real 1942 Dieppe Raid history. Crack them, then hear the full story with Antoine."/>
+<meta name="description" content="Seven clues on Dieppe's history, monuments and food — including real 1942 Dieppe Raid history. Crack them, then hear the full story with Antoine."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://savornstories.com/dieppe-game"/>
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Crack the Raid — Dieppe History Game"/>
-<meta property="og:description" content="Six clues on Dieppe's history, monuments and food. Free game."/>
+<meta property="og:description" content="Seven clues on Dieppe's history, monuments and food. Free game."/>
 <meta property="og:url" content="https://savornstories.com/dieppe-game"/>
 <meta property="og:site_name" content="Savor & Stories"/>
 <style>
@@ -107,7 +107,7 @@ body{font-family:Arial,sans-serif;background:#eef2f0;color:#20282c;max-width:480
   <div class="hero-loc">Savor &amp; Stories · Dieppe</div>
   <div class="hero-name">Crack the Raid</div>
   <div class="divider"></div>
-  <div class="hero-tag" id="heroTag">Six clues. One true story.</div>
+  <div class="hero-tag" id="heroTag">Seven clues. One true story.</div>
   <div class="lang-bar">
     <button class="lbtn active" id="lbtn-en" onclick="setLang('en')">EN</button>
     <button class="lbtn" id="lbtn-fr" onclick="setLang('fr')">FR</button>
@@ -127,11 +127,12 @@ var ICON_CASTLE = '<svg viewBox="0 0 64 64" width="44" height="44"><rect x="18" 
 var ICON_SCALLOP = '<svg viewBox="0 0 64 64" width="44" height="44"><path d="M32 10c10 0 18 16 18 30 0 4-4 6-9 4-3-1-6-3-9-3s-6 2-9 3c-5 2-9 0-9-4 0-14 8-30 18-30z" fill="#7a2c3a"/><line x1="32" y1="14" x2="32" y2="44" stroke="#eef2f0" stroke-width="1.5"/><line x1="26" y1="16" x2="24" y2="44" stroke="#eef2f0" stroke-width="1.5"/><line x1="38" y1="16" x2="40" y2="44" stroke="#eef2f0" stroke-width="1.5"/><line x1="20" y1="22" x2="17" y2="42" stroke="#eef2f0" stroke-width="1.5"/><line x1="44" y1="22" x2="47" y2="42" stroke="#eef2f0" stroke-width="1.5"/></svg>';
 var ICON_CLIFFS = '<svg viewBox="0 0 64 64" width="44" height="44"><path d="M4 40 L10 22 L18 30 L26 14 L34 28 L42 18 L50 32 L60 24 L60 40 Z" fill="#eef2f0" stroke="#a83246" stroke-width="1.5"/><rect x="0" y="40" width="64" height="12" fill="#2c4a5e"/><path d="M0 40q8-3 16 0t16 0 16 0 16 0" fill="none" stroke="#f4f0e8" stroke-width="1.5"/></svg>';
 var ICON_BOTTLE = '<svg viewBox="0 0 64 64" width="44" height="44"><rect x="27" y="8" width="10" height="10" fill="#7a2c3a"/><rect x="29" y="4" width="6" height="6" fill="#a83246"/><path d="M27 18c0 4-4 6-4 12v24c0 2 2 4 4 4h18c2 0 4-2 4-4V30c0-6-4-8-4-12z" fill="#a86a2e"/><rect x="21" y="38" width="22" height="10" fill="#f4f0e8"/></svg>';
+var ICON_FERRY = '<svg viewBox="0 0 64 64" width="44" height="44"><path d="M10 40 L54 40 L48 50 L16 50 Z" fill="#7a2c3a"/><rect x="20" y="26" width="24" height="14" fill="#2c4a5e"/><rect x="26" y="16" width="4" height="12" fill="#1e3644"/><rect x="34" y="16" width="4" height="12" fill="#1e3644"/><path d="M4 52q6-4 12 0t12 0 12 0 12 0 12 0" fill="none" stroke="#2c4a5e" stroke-width="2" stroke-linecap="round"/></svg>';
 
 var UI = {
-  en:{heroTag:'Six clues. One true story.',
-    introH1:'Six clues.<br>History, monuments<br>&amp; local flavor.',
-    introP:'A mix of real Dieppe — from the 1942 Raid to the scallop boats at the market. Crack all six and earn your Field Agent badge.',
+  en:{heroTag:'Seven clues. One true story.',
+    introH1:'Seven clues.<br>History, monuments<br>&amp; local flavor.',
+    introP:'A mix of real Dieppe — from the 1942 Raid to the scallop boats at the market. Crack all seven and earn your Field Agent badge.',
     ruleClues:'Clues', ruleRoughly:'Roughly', ruleCost:'Cost',
     startBtn:'Begin the investigation', clueLabel:'Clue', ofLabel:'of',
     declassified:'DECLASSIFIED', fieldReport:'FIELD REPORT',
@@ -141,9 +142,9 @@ var UI = {
     bookBtn:'Book the real tour', playAgainBtn:'Play again',
     waMsg:function(score,total,title){return "Hi Antoine! I just played Crack the Raid and scored "+score+"/"+total+" ("+title+"). I'd like to book the real Castle & 1942 History tour to hear the full story \u{1F396}️";}
   },
-  fr:{heroTag:'Six indices. Une seule vraie histoire.',
-    introH1:'Six indices.<br>Histoire, monuments<br>et saveurs locales.',
-    introP:'Un vrai mélange de Dieppe — du débarquement de 1942 aux bateaux de pêche à la coquille sur le marché. Résolvez les six et gagnez votre badge d\'Agent de Terrain.',
+  fr:{heroTag:'Sept indices. Une seule vraie histoire.',
+    introH1:'Sept indices.<br>Histoire, monuments<br>et saveurs locales.',
+    introP:'Un vrai mélange de Dieppe — du débarquement de 1942 aux bateaux de pêche à la coquille sur le marché. Résolvez les sept et gagnez votre badge d\'Agent de Terrain.',
     ruleClues:'Indices', ruleRoughly:'Environ', ruleCost:'Coût',
     startBtn:'Commencer l\'enquête', clueLabel:'Indice', ofLabel:'sur',
     declassified:'DÉCLASSIFIÉ', fieldReport:'RAPPORT DE TERRAIN',
@@ -153,9 +154,9 @@ var UI = {
     bookBtn:'Réserver la vraie visite', playAgainBtn:'Rejouer',
     waMsg:function(score,total,title){return "Bonjour Antoine ! Je viens de jouer à Crack the Raid et j'ai obtenu "+score+"/"+total+" ("+title+"). J'aimerais réserver la vraie visite Château & Histoire 1942 pour entendre l'histoire complète \u{1F396}️";}
   },
-  es:{heroTag:'Seis pistas. Una sola historia real.',
-    introH1:'Seis pistas.<br>Historia, monumentos<br>y sabores locales.',
-    introP:'Una mezcla real de Dieppe — desde el desembarco de 1942 hasta los barcos de vieiras del mercado. Resuelve las seis y gana tu insignia de Agente de Campo.',
+  es:{heroTag:'Siete pistas. Una sola historia real.',
+    introH1:'Siete pistas.<br>Historia, monumentos<br>y sabores locales.',
+    introP:'Una mezcla real de Dieppe — desde el desembarco de 1942 hasta los barcos de vieiras del mercado. Resuelve las siete y gana tu insignia de Agente de Campo.',
     ruleClues:'Pistas', ruleRoughly:'Aprox.', ruleCost:'Coste',
     startBtn:'Comenzar la investigación', clueLabel:'Pista', ofLabel:'de',
     declassified:'DESCLASIFICADO', fieldReport:'INFORME DE CAMPO',
@@ -197,25 +198,30 @@ var PUZZLES = [
     en:{cat:'FOOD', note:'Normandy\'s famous apple brandy, distilled from cider, is called…?', hint:'', options:['Calvados','Cognac','Armagnac'], correct:0, fact:'<strong>Calvados</strong> takes its name from the Normandy département it comes from — a Norman specialty you\'ll taste on the Norman Apéro.'},
     fr:{cat:'GASTRONOMIE', note:'Le célèbre alcool de pomme normand, distillé à partir du cidre, s\'appelle…?', hint:'', options:['Calvados','Cognac','Armagnac'], correct:0, fact:'Le <strong>Calvados</strong> tire son nom du département normand dont il est originaire — une spécialité normande que vous goûterez pendant l\'Apéro Normand.'},
     es:{cat:'GASTRONOMÍA', note:'El famoso aguardiente de manzana normando, destilado a partir de sidra, se llama…?', hint:'', options:['Calvados','Coñac','Armañac'], correct:0, fact:'El <strong>Calvados</strong> toma su nombre del departamento normando del que procede — una especialidad normanda que probarás en el Aperitivo Normando.'}
+  },
+  { icon: ICON_FERRY, cipher: false,
+    en:{cat:'GEOGRAPHY', note:'Dieppe sits directly across the Channel from an English port that ferries still connect it to today. Which one?', hint:'', options:['Newhaven','Dover','Portsmouth'], correct:0, fact:'Dieppe has been linked to <strong>Newhaven</strong>, England by cross-Channel ferry for generations — one of the shortest sea crossings between France and England.'},
+    fr:{cat:'GÉOGRAPHIE', note:'Dieppe se trouve juste en face d\'un port anglais avec lequel des ferries la relient encore aujourd\'hui. Lequel ?', hint:'', options:['Newhaven','Douvres','Portsmouth'], correct:0, fact:'Dieppe est reliée à <strong>Newhaven</strong>, en Angleterre, par ferry transmanche depuis des générations — l\'une des traversées maritimes les plus courtes entre la France et l\'Angleterre.'},
+    es:{cat:'GEOGRAFÍA', note:'Dieppe está justo enfrente de un puerto inglés con el que los ferris todavía la conectan hoy en día. ¿Cuál?', hint:'', options:['Newhaven','Dover','Portsmouth'], correct:0, fact:'Dieppe lleva generaciones conectada con <strong>Newhaven</strong>, Inglaterra, mediante un ferry transmanche — una de las travesías marítimas más cortas entre Francia e Inglaterra.'}
   }
 ];
 
 var RESULT_TIERS = {
   en:[
-    {min:6, badge:'🎖️', title:'Field Agent', desc:'All six cracked. You\'ve earned the full briefing — and it\'s better told standing where it happened.'},
-    {min:4, badge:'🕵️', title:'Sharp Recruit', desc:'A strong showing. The rest of the story is waiting on the real tour.'},
+    {min:7, badge:'🎖️', title:'Field Agent', desc:'All seven cracked. You\'ve earned the full briefing — and it\'s better told standing where it happened.'},
+    {min:5, badge:'🕵️', title:'Sharp Recruit', desc:'A strong showing. The rest of the story is waiting on the real tour.'},
     {min:2, badge:'📻', title:'Rookie Signal', desc:'A decent start. The full picture is a lot clearer standing on the actual clifftop with Antoine.'},
     {min:0, badge:'🐚', title:'Fresh Off the Boat', desc:'Plenty to discover — good thing there\'s a whole tour built to fill in the gaps.'}
   ],
   fr:[
-    {min:6, badge:'🎖️', title:'Agent de terrain', desc:'Les six résolus. Vous avez gagné le briefing complet — et il se raconte mieux sur place.'},
-    {min:4, badge:'🕵️', title:'Recrue affûtée', desc:'Belle performance. Le reste de l\'histoire vous attend pendant la vraie visite.'},
+    {min:7, badge:'🎖️', title:'Agent de terrain', desc:'Les sept résolus. Vous avez gagné le briefing complet — et il se raconte mieux sur place.'},
+    {min:5, badge:'🕵️', title:'Recrue affûtée', desc:'Belle performance. Le reste de l\'histoire vous attend pendant la vraie visite.'},
     {min:2, badge:'📻', title:'Signal débutant', desc:'Un bon début. Le tableau complet est bien plus clair depuis la vraie falaise, avec Antoine.'},
     {min:0, badge:'🐚', title:'Fraîchement débarqué', desc:'Il y a beaucoup à découvrir — heureusement, toute une visite est là pour combler les lacunes.'}
   ],
   es:[
-    {min:6, badge:'🎖️', title:'Agente de campo', desc:'Las seis resueltas. Te has ganado el informe completo — y se cuenta mejor en el lugar donde ocurrió.'},
-    {min:4, badge:'🕵️', title:'Recluta agudo', desc:'Buen resultado. El resto de la historia te espera en el tour real.'},
+    {min:7, badge:'🎖️', title:'Agente de campo', desc:'Las siete resueltas. Te has ganado el informe completo — y se cuenta mejor en el lugar donde ocurrió.'},
+    {min:5, badge:'🕵️', title:'Recluta agudo', desc:'Buen resultado. El resto de la historia te espera en el tour real.'},
     {min:2, badge:'📻', title:'Señal novata', desc:'Un buen comienzo. El panorama completo se ve mucho más claro desde el acantilado real, con Antoine.'},
     {min:0, badge:'🐚', title:'Recién desembarcado', desc:'Mucho por descubrir — menos mal que hay todo un tour para completar los huecos.'}
   ]
