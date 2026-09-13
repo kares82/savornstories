@@ -39,45 +39,55 @@ const jsonLd = {
 };
 ---
 <Layout title={`${title} | Savor & Stories`} description={summary} jsonLd={jsonLd}>
-  <div class="px-4 pt-5">
-    <a href={`/${city}`} class={`text-xs font-bold ${accent} no-underline`}>&larr; Back to {cityLabel} tours</a>
-  </div>
-
-  <div class="px-4 pt-4 pb-2 text-center">
-    <span class="text-4xl">{icon}</span>
-    <div class="text-[10px] tracking-[0.2em] text-label uppercase font-bold mt-2">{cityLabel} &middot; {duration}</div>
-    <h1 class="text-2xl font-bold leading-tight mt-1">{title}</h1>
-  </div>
-
-  <div class="px-4 pb-8">
-    <div class="bg-white rounded-2xl border border-border p-5 prose-tour">
-      <Content />
+  <div class="max-w-[480px] md:max-w-3xl lg:max-w-5xl mx-auto">
+    <div class="px-4 md:px-6 pt-5">
+      <a href={`/${city}`} class={`text-xs font-bold ${accent} no-underline`}>&larr; Back to {cityLabel} tours</a>
     </div>
 
-    {included.length > 0 && (
-      <div class="bg-white rounded-2xl border border-border p-5 mt-4">
-        <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">What's included</p>
-        <ul class="text-sm leading-relaxed space-y-2">
-          {included.map((item: string) => <li class="flex gap-2"><span class="text-green">&#10003;</span><span>{item}</span></li>)}
-        </ul>
-      </div>
-    )}
+    <div class="px-4 md:px-6 pt-4 pb-2 text-center lg:text-left">
+      <span class="text-4xl">{icon}</span>
+      <div class="text-[10px] tracking-[0.2em] text-label uppercase font-bold mt-2">{cityLabel} &middot; {duration}</div>
+      <h1 class="text-2xl md:text-3xl font-bold leading-tight mt-1">{title}</h1>
+    </div>
 
-    <div class="bg-white rounded-2xl border border-border p-5 mt-4">
-      <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">Good to know</p>
-      <dl class="text-sm space-y-2">
-        <div class="flex justify-between gap-3"><dt class="text-label">Duration</dt><dd class="font-bold text-right">{duration}</dd></div>
-        {schedule && <div class="flex justify-between gap-3"><dt class="text-label">Schedule</dt><dd class="font-bold text-right">{schedule}</dd></div>}
-        <div class="flex justify-between gap-3">
-          <dt class="text-label">Meeting point</dt>
-          <dd class="font-bold text-right">
-            {meetingPoint ?? <span class="italic text-label">Shared with you when you book</span>}
-          </dd>
+    <div class="px-4 md:px-6 pb-8 lg:grid lg:grid-cols-[1fr_320px] lg:gap-8 lg:items-start">
+      <div>
+        <div class="bg-white rounded-2xl border border-border p-5 md:p-7 prose-tour">
+          <Content />
         </div>
-      </dl>
-      {goodToKnow && <p class="text-xs text-ink-soft leading-relaxed mt-3">{goodToKnow}</p>}
-    </div>
 
-    <BookingWidget title={title} price={price} priceLabel={priceLabel} />
+        {included.length > 0 && (
+          <div class="bg-white rounded-2xl border border-border p-5 md:p-7 mt-4">
+            <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">What's included</p>
+            <ul class="text-sm leading-relaxed space-y-2">
+              {included.map((item: string) => <li class="flex gap-2"><span class="text-green">&#10003;</span><span>{item}</span></li>)}
+            </ul>
+          </div>
+        )}
+
+        <div class="bg-white rounded-2xl border border-border p-5 md:p-7 mt-4">
+          <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">Good to know</p>
+          <dl class="text-sm space-y-2">
+            <div class="flex justify-between gap-3"><dt class="text-label">Duration</dt><dd class="font-bold text-right">{duration}</dd></div>
+            {schedule && <div class="flex justify-between gap-3"><dt class="text-label">Schedule</dt><dd class="font-bold text-right">{schedule}</dd></div>}
+            <div class="flex justify-between gap-3">
+              <dt class="text-label">Meeting point</dt>
+              <dd class="font-bold text-right">
+                {meetingPoint ?? <span class="italic text-label">Shared with you when you book</span>}
+              </dd>
+            </div>
+          </dl>
+          {goodToKnow && <p class="text-xs text-ink-soft leading-relaxed mt-3">{goodToKnow}</p>}
+        </div>
+
+        <div class="lg:hidden">
+          <BookingWidget title={title} price={price} priceLabel={priceLabel} />
+        </div>
+      </div>
+
+      <div class="hidden lg:block lg:sticky lg:top-6">
+        <BookingWidget title={title} price={price} priceLabel={priceLabel} />
+      </div>
+    </div>
   </div>
 </Layout>

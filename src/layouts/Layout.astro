@@ -37,7 +37,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   )}
 </head>
-<body class="max-w-[480px] mx-auto bg-cream text-ink">
+<body class="bg-cream text-ink">
   <Header />
   <main>
     <slot />

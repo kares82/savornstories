@@ -20,55 +20,57 @@ const jsonLd = {
   description="Private scallop tastings, castle history and coastal walks in Dieppe, led personally by Antoine."
   jsonLd={jsonLd}
 >
-  <div class="bg-teal px-5 pt-8 pb-8 text-center">
+  <div class="bg-teal px-5 pt-8 pb-8 md:pt-14 md:pb-14 text-center">
     <div class="text-[10px] tracking-[0.2em] text-teal-soft uppercase mb-1">Savor &amp; Stories</div>
-    <h1 class="text-cream text-2xl font-bold">Dieppe Tours</h1>
+    <h1 class="text-cream text-2xl md:text-4xl font-bold">Dieppe Tours</h1>
     <div class="w-10 h-0.5 bg-gold mx-auto my-3"></div>
-    <p class="text-[13px] text-[#e8e2d4] italic">A working scallop port, a castle, chalk cliffs and a story from 1942.</p>
+    <p class="text-[13px] md:text-base text-[#e8e2d4] italic">A working scallop port, a castle, chalk cliffs and a story from 1942.</p>
   </div>
 
-  <div class="px-4 pt-6 pb-2">
-    {tours.map((tour) => (
-      <TourCard
-        slug={tour.id}
-        icon={tour.data.icon}
-        title={tour.data.title}
-        summary={tour.data.summary}
-        duration={tour.data.duration}
-        price={tour.data.price}
-        priceLabel={tour.data.priceLabel}
-        accent="dieppe"
-      />
-    ))}
-  </div>
+  <div class="max-w-[480px] md:max-w-3xl lg:max-w-5xl mx-auto">
+    <div class="px-4 md:px-6 pt-6 md:pt-10 pb-2 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5">
+      {tours.map((tour) => (
+        <TourCard
+          slug={tour.id}
+          icon={tour.data.icon}
+          title={tour.data.title}
+          summary={tour.data.summary}
+          duration={tour.data.duration}
+          price={tour.data.price}
+          priceLabel={tour.data.priceLabel}
+          accent="dieppe"
+        />
+      ))}
+    </div>
 
-  <div class="px-4 pb-4">
-    <a
-      href="/dieppe-game"
-      class="block bg-white rounded-2xl border border-border p-4 flex items-center gap-3 no-underline text-inherit"
-    >
-      <span class="text-2xl">🎮</span>
-      <span>
-        <span class="block font-bold text-sm">Play Crack the Raid</span>
-        <span class="block text-xs text-ink-soft">A free 7 question game before you book</span>
-      </span>
-    </a>
-  </div>
-
-  <div class="px-4 pb-8">
-    <div class="bg-white rounded-2xl border border-border p-5 text-center">
-      <p class="text-sm font-bold mb-1">Want something different?</p>
-      <p class="text-xs text-ink-soft leading-relaxed mb-3">
-        I also design personalized tours of Dieppe and the Normandy coast for individuals, families or groups. Message me and we will work out the details together.
-      </p>
+    <div class="px-4 md:px-6 pb-4">
       <a
-        href="https://wa.me/33626391783?text=Hi%20Antoine!%20I'd%20like%20a%20custom%20Dieppe%20tour."
-        target="_blank"
-        rel="noopener"
-        class="inline-block text-xs font-bold text-teal"
+        href="/dieppe-game"
+        class="flex items-center gap-3 bg-white rounded-2xl border border-border p-4 no-underline text-inherit md:max-w-md"
       >
-        Message Antoine &rarr;
+        <span class="text-2xl">🎮</span>
+        <span>
+          <span class="block font-bold text-sm">Play Crack the Raid</span>
+          <span class="block text-xs text-ink-soft">A free 7 question game before you book</span>
+        </span>
       </a>
+    </div>
+
+    <div class="px-4 md:px-6 pb-8 md:pb-14">
+      <div class="bg-white rounded-2xl border border-border p-5 md:p-7 text-center md:max-w-md md:mx-auto">
+        <p class="text-sm font-bold mb-1">Want something different?</p>
+        <p class="text-xs text-ink-soft leading-relaxed mb-3">
+          I also design personalized tours of Dieppe and the Normandy coast for individuals, families or groups. Message me and we will work out the details together.
+        </p>
+        <a
+          href="https://wa.me/33626391783?text=Hi%20Antoine!%20I'd%20like%20a%20custom%20Dieppe%20tour."
+          target="_blank"
+          rel="noopener"
+          class="inline-block text-xs font-bold text-teal"
+        >
+          Message Antoine &rarr;
+        </a>
+      </div>
     </div>
   </div>
 </Layout>
