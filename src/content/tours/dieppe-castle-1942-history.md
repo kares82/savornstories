@@ -9,6 +9,7 @@ included:
   - "A walk along the seafront where the 1942 Dieppe Raid took place"
 icon: "🏰"
 order: 3
+heroImage: "/assets/photos/dieppe-castle.jpg"
 ---
 
 I bring you up to the clifftop Château-Musée de Dieppe for sweeping views over the Channel. It's a good place to start, since you can see most of the town and coastline from up there before we go back down into the story.
