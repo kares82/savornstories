@@ -12,6 +12,14 @@ included:
 goodToKnow: "Wear comfortable shoes, since we spend most of the tour walking on cobblestones. The wine tasting includes alcohol, so please bring ID if you look under 25. Let me know before the tour about any dietary needs so I can plan the food and wine stops around them. Weather in Bordeaux can change quickly, so a light jacket is a good idea outside summer."
 icon: "🍷"
 order: 1
+heroImage: "/assets/photos/bordeaux-church-gesture-group.jpg"
+gallery:
+  - src: "/assets/photos/bordeaux-canele-box.jpg"
+    alt: "A box of fresh canelés from a Bordeaux bakery"
+  - src: "/assets/photos/bordeaux-wine-bottles.jpg"
+    alt: "Bordeaux wines lined up for tasting"
+  - src: "/assets/photos/bordeaux-tour-meal.jpg"
+    alt: "The meal that finishes the tour"
 ---
 
 In Bordeaux, I run a walking tour that combines history, food and wine into one afternoon. Guests meet me in the old town, and we walk together through centuries old streets, past merchant houses, historic churches and hidden courtyards, while I explain how the city grew rich on the wine trade and what that history actually looked like.

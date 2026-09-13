@@ -16,6 +16,8 @@ const tours = defineCollection({
     goodToKnow: z.string().optional(),
     icon: z.string(),
     order: z.number().default(0),
+    heroImage: z.string().optional(),
+    gallery: z.array(z.object({ src: z.string(), alt: z.string() })).default([]),
   }),
 });
 

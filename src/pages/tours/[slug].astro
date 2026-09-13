@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const { tour } = Astro.props;
-const { title, summary, duration, price, priceLabel, schedule, meetingPoint, included, goodToKnow, icon, city } = tour.data;
+const { title, summary, duration, price, priceLabel, schedule, meetingPoint, included, goodToKnow, icon, city, heroImage, gallery } = tour.data;
 const { Content } = await render(tour);
 
 const cityLabel = city === 'bordeaux' ? 'Bordeaux' : 'Dieppe';
@@ -44,6 +44,16 @@ const jsonLd = {
       <a href={`/${city}`} class={`text-xs font-bold ${accent} no-underline`}>&larr; Back to {cityLabel} tours</a>
     </div>
 
+    {heroImage && (
+      <div class="px-4 md:px-6 pt-4">
+        <img
+          src={heroImage}
+          alt={title}
+          class="w-full h-56 md:h-80 object-cover rounded-2xl border border-border"
+        />
+      </div>
+    )}
+
     <div class="px-4 md:px-6 pt-4 pb-2 text-center lg:text-left">
       <span class="text-4xl">{icon}</span>
       <div class="text-[10px] tracking-[0.2em] text-label uppercase font-bold mt-2">{cityLabel} &middot; {duration}</div>
@@ -55,6 +65,18 @@ const jsonLd = {
         <div class="bg-white rounded-2xl border border-border p-5 md:p-7 prose-tour">
           <Content />
         </div>
+
+        {gallery.length > 0 && (
+          <div class="grid grid-cols-3 gap-3 mt-4">
+            {gallery.map((photo: { src: string; alt: string }) => (
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                class="w-full h-24 md:h-32 object-cover rounded-xl border border-border"
+              />
+            ))}
+          </div>
+        )}
 
         {included.length > 0 && (
           <div class="bg-white rounded-2xl border border-border p-5 md:p-7 mt-4">
