@@ -1,0 +1,31 @@
+---
+// TEMPORARY: Bokun's booking widget and availability calendar go here once
+// Antoine's Bokun account and tour listings are set up. Bokun gives an embed
+// snippet per tour (usually a <div> plus a small script tag) from the
+// Bokun dashboard under Distribution > Booking channels > Website widget.
+// Drop that snippet in place of the WhatsApp button below, and delete this
+// comment block and the button.
+interface Props {
+  title: string;
+  price: string | null;
+}
+const { title, price } = Astro.props;
+const waMessage = encodeURIComponent(
+  `Hi Antoine! I would like to book the ${title} tour.`
+);
+---
+<div class="bg-white rounded-2xl border border-border p-5 mt-5">
+  <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">Book this tour</p>
+  {price && <p class="text-2xl font-bold mb-3">{price} <span class="text-xs font-normal text-label">/ person</span></p>}
+  <a
+    href={`https://wa.me/33626391783?text=${waMessage}`}
+    target="_blank"
+    rel="noopener"
+    class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
+  >
+    Message Antoine on WhatsApp to book
+  </a>
+  <p class="text-[11px] text-label mt-3 leading-relaxed">
+    Online booking and live availability are coming soon. For now every booking is confirmed directly with Antoine over WhatsApp.
+  </p>
+</div>

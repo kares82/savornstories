@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import TourCard from '../components/TourCard.astro';
+
+const tours = (await getCollection('tours', ({ data }) => data.city === 'bordeaux'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Savor & Stories, Bordeaux',
+  telephone: '+33626391783',
+  email: 'contact@savornstories.com',
+  address: { '@type': 'PostalAddress', addressLocality: 'Bordeaux', addressCountry: 'FR' },
+};
+---
+<Layout
+  title="Bordeaux Tours with Antoine | Savor & Stories"
+  description="Private wine, food, history and bike tours in Bordeaux, led personally by Antoine."
+  jsonLd={jsonLd}
+>
+  <div class="bg-green px-5 pt-8 pb-8 text-center">
+    <div class="text-[10px] tracking-[0.2em] text-teal-soft uppercase mb-1">Savor &amp; Stories</div>
+    <h1 class="text-cream text-2xl font-bold">Bordeaux Tours</h1>
+    <div class="w-10 h-0.5 bg-gold mx-auto my-3"></div>
+    <p class="text-[13px] text-[#e8e2d4] italic">Wine, history and a river that built the city's fortune.</p>
+  </div>
+
+  <div class="px-4 pt-6 pb-2">
+    {tours.map((tour) => (
+      <TourCard
+        slug={tour.id}
+        icon={tour.data.icon}
+        title={tour.data.title}
+        summary={tour.data.summary}
+        duration={tour.data.duration}
+        price={tour.data.price}
+        priceLabel={tour.data.priceLabel}
+        accent="bordeaux"
+      />
+    ))}
+  </div>
+
+  <div class="px-4 pb-4">
+    <a
+      href="/bordeaux-game"
+      class="block bg-white rounded-2xl border border-border p-4 flex items-center gap-3 no-underline text-inherit"
+    >
+      <span class="text-2xl">🎮</span>
+      <span>
+        <span class="block font-bold text-sm">Play Blind Taste, Bordeaux</span>
+        <span class="block text-xs text-ink-soft">A free 7 question game before you book</span>
+      </span>
+    </a>
+  </div>
+
+  <div class="px-4 pb-8">
+    <div class="bg-white rounded-2xl border border-border p-5 text-center">
+      <p class="text-sm font-bold mb-1">Want something different?</p>
+      <p class="text-xs text-ink-soft leading-relaxed mb-3">
+        I also design personalized tours of Bordeaux for individuals, families or groups. Message me and we will work out the details together.
+      </p>
+      <a
+        href="https://wa.me/33626391783?text=Hi%20Antoine!%20I'd%20like%20a%20custom%20Bordeaux%20tour."
+        target="_blank"
+        rel="noopener"
+        class="inline-block text-xs font-bold text-wine"
+      >
+        Message Antoine &rarr;
+      </a>
+    </div>
+  </div>
+</Layout>

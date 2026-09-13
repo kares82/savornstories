@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+/* Same palette as the original site: warm cream ground, Bordeaux green,
+   deep teal, wine red, gold accent. Kept as CSS variables so components
+   can reuse them without re-typing hex values. */
+@theme {
+  --color-cream: #f4f0e8;
+  --color-ink: #2c2020;
+  --color-ink-soft: #5a4a4a;
+  --color-label: #7a6a6a;
+  --color-border: #e0d8c8;
+  --color-green: #3d5c3a;
+  --color-green-soft: #e8f0e5;
+  --color-teal: #2c4a5e;
+  --color-teal-soft: #dce8ec;
+  --color-wine: #6b1a2e;
+  --color-wine-dieppe: #7a2c3a;
+  --color-gold: #e8c07a;
+  --color-whatsapp: #25d366;
+
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+html {
+  background: var(--color-cream);
+}
+
+.prose-tour {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+}
+
+.prose-tour p + p {
+  margin-top: 1em;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-cream);
+}

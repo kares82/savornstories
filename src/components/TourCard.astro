@@ -1,0 +1,36 @@
+---
+interface Props {
+  slug: string;
+  icon: string;
+  title: string;
+  summary: string;
+  duration: string;
+  price: string | null;
+  priceLabel?: string;
+  accent: 'bordeaux' | 'dieppe';
+}
+
+const { slug, icon, title, summary, duration, price, priceLabel, accent } = Astro.props;
+const goColor = accent === 'bordeaux' ? 'text-wine' : 'text-teal';
+---
+<a
+  href={`/tours/${slug}`}
+  class="block bg-white rounded-2xl border border-border mb-4 overflow-hidden no-underline text-inherit transition-transform active:scale-[0.98]"
+>
+  <div class="h-[70px] flex items-center justify-center text-3xl bg-green-soft">
+    <span>{icon}</span>
+  </div>
+  <div class="p-4">
+    <div class="text-[9px] tracking-[0.2em] text-label uppercase font-bold mb-1">{duration}</div>
+    <div class="text-lg font-bold leading-tight">{title}</div>
+    <p class="text-xs text-ink-soft leading-relaxed mt-2">{summary}</p>
+    <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#eee4d4]">
+      <div class="text-[11px] text-label">
+        {price ? <><strong class="text-base text-ink">{price}</strong> / person</> : (priceLabel ?? 'On request')}
+      </div>
+      <div class={`text-xs font-bold flex items-center gap-1 ${goColor}`}>
+        Details &rarr;
+      </div>
+    </div>
+  </div>
+</a>

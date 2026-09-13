@@ -1,0 +1,31 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/bordeaux', label: 'Bordeaux' },
+  { href: '/dieppe', label: 'Dieppe' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+const path = Astro.url.pathname;
+---
+<header class="bg-green">
+  <div class="max-w-[480px] mx-auto flex items-center justify-between px-4 py-3">
+    <a href="/" class="flex items-center gap-2 text-cream font-bold text-sm tracking-wide">
+      <img src="/assets/favicon-32.png" alt="" width="22" height="22" class="rounded-full" />
+      Savor &amp; Stories
+    </a>
+    <nav class="flex gap-3">
+      {links.map((link) => {
+        const active = path === link.href || (link.href !== '/' && path.startsWith(link.href));
+        return (
+          <a
+            href={link.href}
+            class={`text-[11px] font-bold tracking-wide uppercase ${active ? 'text-cream' : 'text-teal-soft'}`}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+    </nav>
+  </div>
+</header>

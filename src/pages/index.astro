@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Savor & Stories',
+  telephone: '+33626391783',
+  email: 'contact@savornstories.com',
+  url: 'https://savorstories.com',
+  areaServed: ['Bordeaux', 'Dieppe'],
+};
+---
+<Layout
+  title="Savor & Stories | Private Tours in Bordeaux & Dieppe with Antoine"
+  description="Authentic French experiences, told by locals. Private wine, food and history tours in Bordeaux and Dieppe with Antoine."
+  jsonLd={jsonLd}
+>
+  <div class="bg-gradient-to-br from-green to-teal px-5 pt-10 pb-8 text-center">
+    <h1 class="text-cream text-[28px] font-bold leading-snug">Authentic French experiences, told by locals</h1>
+    <div class="w-10 h-0.5 bg-gold mx-auto my-4"></div>
+  </div>
+
+  <div class="px-4 pt-6 pb-2 text-sm leading-relaxed text-ink-soft space-y-4">
+    <p>
+      I'm Antoine, and I guide in two French towns that couldn't be more different. Bordeaux is wine, of course, but it's also 2,000 years of history, a river that built the city's fortune, and evenings where people gather over a drink to argue about pétanque. Dieppe is quieter, a place most visitors miss entirely: a working scallop port, a castle above the beach, chalk cliffs, and a 1942 raid that's part of the town's story.
+    </p>
+    <p>
+      I keep my groups small because I want it to feel like a conversation, not a lecture. I'll answer your questions honestly and tell you where I actually go to eat.
+    </p>
+  </div>
+
+  <div class="px-4 pt-6 pb-2">
+    <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold text-center mb-4">Choose your city</p>
+
+    <a href="/bordeaux" class="block bg-white rounded-2xl border border-border mb-4 p-5 no-underline text-inherit">
+      <div class="text-[9px] tracking-[0.2em] text-label uppercase font-bold mb-1">South West France</div>
+      <h2 class="text-xl font-bold text-wine">Bordeaux</h2>
+      <p class="text-xs text-ink-soft leading-relaxed mt-2">Wine, food, history and a bike ride along the Garonne.</p>
+    </a>
+
+    <a href="/dieppe" class="block bg-white rounded-2xl border border-border mb-4 p-5 no-underline text-inherit">
+      <div class="text-[9px] tracking-[0.2em] text-label uppercase font-bold mb-1">Normandy</div>
+      <h2 class="text-xl font-bold text-teal">Dieppe</h2>
+      <p class="text-xs text-ink-soft leading-relaxed mt-2">Scallops, a clifftop castle and the story of 1942.</p>
+    </a>
+  </div>
+
+  <div class="px-4 pt-4 pb-8">
+    <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold text-center mb-4">Contact Antoine</p>
+    <a
+      href="https://wa.me/33626391783"
+      target="_blank"
+      rel="noopener"
+      class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-base no-underline mb-3"
+    >
+      Message on WhatsApp
+      <span class="block text-xs font-normal opacity-90">+33 6 26 39 17 83</span>
+    </a>
+  </div>
+</Layout>
