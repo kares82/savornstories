@@ -6,7 +6,11 @@ import Layout from '../layouts/Layout.astro';
   description="Meet Antoine, the guide behind Savor & Stories in Bordeaux and Dieppe."
 >
   <div class="bg-green px-5 pt-8 pb-8 md:pt-14 md:pb-14 text-center">
-    <h1 class="text-cream text-2xl md:text-4xl font-bold">About Antoine</h1>
+    <h1 class="text-cream text-2xl md:text-4xl font-bold">
+      <span data-lang="en">About Antoine</span>
+      <span data-lang="fr" hidden>À propos d'Antoine</span>
+      <span data-lang="es" hidden>Sobre Antoine</span>
+    </h1>
     <div class="w-10 h-0.5 bg-gold mx-auto my-3"></div>
   </div>
 
@@ -20,16 +24,26 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="px-4 md:px-6 pt-4 md:pt-6 pb-8 md:pb-14 text-sm md:text-base leading-relaxed text-ink-soft space-y-4">
-      <p>
-        I'm Antoine, and I guide in two French towns that couldn't be more different. Bordeaux is wine, of course, but it's also 2,000 years of history, a river that built the city's fortune, and evenings where people gather over a drink to argue about pétanque. Dieppe is quieter, a place most visitors miss entirely: a working scallop port, a castle above the beach, chalk cliffs, and a 1942 raid that's part of the town's story.
-      </p>
-      <p>
-        I keep my groups small because I want it to feel like a conversation, not a lecture. I'll answer your questions honestly and tell you where I actually go to eat.
-      </p>
+      <div data-lang="en">
+        <p>I'm Antoine, and I guide in two French towns that couldn't be more different. Bordeaux is wine, of course, but it's also 2,000 years of history, a river that built the city's fortune, and evenings where people gather over a drink to argue about pétanque. Dieppe is quieter, a place most visitors miss entirely: a working scallop port, a castle above the beach, chalk cliffs, and a 1942 raid that's part of the town's story.</p>
+        <p class="mt-4">I keep my groups small because I want it to feel like a conversation, not a lecture. I'll answer your questions honestly and tell you where I actually go to eat.</p>
+      </div>
+      <div data-lang="fr" hidden>
+        <p>Je m'appelle Antoine et je guide dans deux villes françaises qui ne pourraient pas être plus différentes. Bordeaux, c'est le vin bien sûr, mais aussi 2 000 ans d'histoire, un fleuve qui a fait la fortune de la ville, et des soirées où l'on se retrouve autour d'un verre pour débattre de pétanque. Dieppe est plus tranquille, un lieu que la plupart des visiteurs ne voient jamais vraiment&nbsp;: un port de pêche à la coquille Saint-Jacques toujours en activité, un château au-dessus de la plage, des falaises de craie, et un raid de 1942 qui fait partie de l'histoire de la ville.</p>
+        <p class="mt-4">Je garde des petits groupes parce que je veux que ça ressemble à une conversation, pas à un cours magistral. Je répondrai à vos questions honnêtement et je vous dirai où je vais vraiment manger.</p>
+      </div>
+      <div data-lang="es" hidden>
+        <p>Soy Antoine, y guío en dos ciudades francesas que no podrían ser más distintas. Burdeos es vino, por supuesto, pero también son 2000 años de historia, un río que hizo la fortuna de la ciudad, y noches en las que la gente se reúne junto a una copa para discutir sobre petanca. Dieppe es más tranquila, un lugar que la mayoría de los visitantes pasa completamente por alto: un puerto pesquero de vieiras en pleno funcionamiento, un castillo sobre la playa, acantilados de creta, y un desembarco de 1942 que forma parte de la historia de la ciudad.</p>
+        <p class="mt-4">Mantengo mis grupos pequeños porque quiero que se sienta como una conversación, no como una clase. Responderé a tus preguntas con sinceridad y te diré dónde como yo de verdad.</p>
+      </div>
     </div>
 
     <div class="px-4 md:px-6 pb-8 md:pb-14">
-      <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold text-center mb-4">Real tours, real guests</p>
+      <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold text-center mb-4">
+        <span data-lang="en">Real tours, real guests</span>
+        <span data-lang="fr" hidden>Vraies visites, vrais clients</span>
+        <span data-lang="es" hidden>Tours reales, clientes reales</span>
+      </p>
       <div class="grid grid-cols-2 gap-3 md:gap-4">
         <img src="/assets/photos/antoine-portrait-explaining.jpg" alt="Antoine talking with guests in Bordeaux" class="zoomable cursor-zoom-in w-full h-28 md:h-40 object-cover object-top rounded-xl border border-border" />
         <img src="/assets/photos/bordeaux-hotel-intendance-group.jpg" alt="A group tour in Bordeaux's old town" class="zoomable cursor-zoom-in w-full h-28 md:h-40 object-cover [object-position:50%_65%] rounded-xl border border-border" />
@@ -38,7 +52,11 @@ import Layout from '../layouts/Layout.astro';
         <img src="/assets/photos/bordeaux-chocolate-box.jpg" alt="A box of Bordeaux chocolates" class="zoomable cursor-zoom-in w-full h-28 md:h-40 object-cover rounded-xl border border-border" />
         <img src="/assets/photos/antoine-portrait-chocolate-shop.jpg" alt="Antoine at a Bordeaux chocolate shop" class="zoomable cursor-zoom-in col-span-2 w-full h-40 md:h-56 object-cover rounded-xl border border-border" />
       </div>
-      <p class="text-xs text-label text-center mt-3">Real photos from real tours, not stock images. Tap any photo to zoom in.</p>
+      <p class="text-xs text-label text-center mt-3">
+        <span data-lang="en">Real photos from real tours, not stock images. Tap any photo to zoom in.</span>
+        <span data-lang="fr" hidden>De vraies photos de vraies visites, pas des images de banque. Touchez une photo pour l'agrandir.</span>
+        <span data-lang="es" hidden>Fotos reales de tours reales, no imágenes de stock. Toca cualquier foto para ampliarla.</span>
+      </p>
     </div>
   </div>
 

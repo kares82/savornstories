@@ -1,15 +1,52 @@
 ---
 city: bordeaux
-title: "Wine, Food and History Walk"
-summary: "A walking tour through Bordeaux's old town blending history, a canelé tasting and a proper wine stop, then a shared lunch or dinner."
-duration: "3 hours"
+title:
+  en: "Wine, Food and History Walk"
+  fr: "Balade Vin, Gastronomie et Histoire"
+  es: "Paseo de Vino, Gastronomía e Historia"
+summary:
+  en: "A walking tour through Bordeaux's old town blending history, a canelé tasting and a proper wine stop, then a shared lunch or dinner."
+  fr: "Une visite à pied dans la vieille ville de Bordeaux mêlant histoire, dégustation de canelés et vraie halte œnologique, puis un déjeuner ou dîner partagé."
+  es: "Un paseo por el casco antiguo de Burdeos que combina historia, una degustación de canelés y una parada de vino de verdad, seguido de un almuerzo o cena compartida."
+duration:
+  en: "3 hours"
+  fr: "3 heures"
+  es: "3 horas"
 price: "90€"
-schedule: "Tuesday to Saturday, departures at 10:30 and 17:30"
+schedule:
+  en: "Tuesday to Saturday, departures at 10:30 and 17:30"
+  fr: "Du mardi au samedi, départs à 10h30 et 17h30"
+  es: "De martes a sábado, salidas a las 10:30 y las 17:30"
 included:
-  - "A canelé tasting at a local bakery"
-  - "A wine tasting at a wine shop, poured by someone who knows the bottles"
-  - "A full lunch or dinner to finish, at a place I actually eat at myself"
-goodToKnow: "Wear comfortable shoes, since we spend most of the tour walking on cobblestones. The wine tasting includes alcohol, so please bring ID if you look under 25. Let me know before the tour about any dietary needs so I can plan the food and wine stops around them. Weather in Bordeaux can change quickly, so a light jacket is a good idea outside summer."
+  en:
+    - "A canelé tasting at a local bakery"
+    - "A wine tasting at a wine shop, poured by someone who knows the bottles"
+    - "A full lunch or dinner to finish, at a place I actually eat at myself"
+  fr:
+    - "Une dégustation de canelés dans une boulangerie locale"
+    - "Une dégustation de vin dans une cave, servie par quelqu'un qui connaît les bouteilles"
+    - "Un vrai déjeuner ou dîner pour finir, dans un endroit où je mange moi-même"
+  es:
+    - "Una degustación de canelés en una panadería local"
+    - "Una cata de vino en una tienda especializada, servida por alguien que conoce las botellas"
+    - "Un almuerzo o cena completa para terminar, en un lugar donde yo mismo como"
+goodToKnow:
+  en: "Wear comfortable shoes, since we spend most of the tour walking on cobblestones. The wine tasting includes alcohol, so please bring ID if you look under 25. Let me know before the tour about any dietary needs so I can plan the food and wine stops around them. Weather in Bordeaux can change quickly, so a light jacket is a good idea outside summer."
+  fr: "Portez des chaussures confortables, car nous marchons la majeure partie de la visite sur des pavés. La dégustation de vin comprend de l'alcool, munissez-vous donc d'une pièce d'identité si vous semblez avoir moins de 25 ans. Prévenez-moi avant la visite de tout besoin alimentaire particulier afin que je puisse organiser les étapes food et vin en conséquence. Le temps à Bordeaux peut changer rapidement, une veste légère est donc une bonne idée en dehors de l'été."
+  es: "Usa calzado cómodo, ya que caminamos la mayor parte del recorrido sobre adoquines. La cata de vino incluye alcohol, así que trae tu identificación si aparentas menos de 25 años. Avísame antes del tour sobre cualquier necesidad alimentaria para poder planear las paradas de comida y vino en función de ello. El clima en Burdeos puede cambiar rápidamente, así que una chaqueta ligera es buena idea fuera del verano."
+description:
+  en:
+    - "In Bordeaux, I run a walking tour that combines history, food and wine into one afternoon. Guests meet me in the old town, and we walk together through centuries old streets, past merchant houses, historic churches and hidden courtyards, while I explain how the city grew rich on the wine trade and what that history actually looked like."
+    - "Along the way we stop to taste a canelé, the small caramelized cake Bordeaux is quietly obsessed with, fresh from a local bakery. A little further on, we pause at a wine shop tucked into one of the old streets, where we taste wine straight from the window, poured by someone who actually knows the bottles on the shelf."
+    - "We keep walking through more of the historic centre, and I keep explaining what we are looking at and why it still stands. The tour finishes with a proper meal, lunch or dinner depending on the time of day, at a place I actually eat at myself, where guests can relax and talk over what they have seen."
+  fr:
+    - "À Bordeaux, je propose une visite à pied qui combine histoire, gastronomie et vin en un seul après-midi. Les visiteurs me rejoignent dans la vieille ville, et nous marchons ensemble dans des rues centenaires, devant des maisons de négociants, des églises historiques et des cours cachées, pendant que j'explique comment la ville s'est enrichie grâce au commerce du vin et à quoi cette histoire ressemblait vraiment."
+    - "En chemin, nous nous arrêtons pour goûter un canelé, la petite pâtisserie caramélisée dont Bordeaux est discrètement obsédée, tout juste sorti d'une boulangerie locale. Un peu plus loin, nous faisons une halte dans une cave à vin nichée dans l'une des vieilles rues, où nous dégustons du vin directement à la vitrine, servi par quelqu'un qui connaît vraiment les bouteilles sur l'étagère."
+    - "Nous continuons à marcher à travers le centre historique, et je continue à expliquer ce que nous regardons et pourquoi cela tient encore debout. La visite se termine par un vrai repas, déjeuner ou dîner selon l'heure de la journée, dans un endroit où je mange moi-même, où les visiteurs peuvent se détendre et discuter de ce qu'ils ont vu."
+  es:
+    - "En Burdeos, dirijo un paseo a pie que combina historia, gastronomía y vino en una sola tarde. Los visitantes se encuentran conmigo en el casco antiguo, y caminamos juntos por calles centenarias, pasando frente a casas de comerciantes, iglesias históricas y patios escondidos, mientras explico cómo la ciudad se enriqueció con el comercio del vino y cómo era realmente esa historia."
+    - "En el camino nos detenemos a probar un canelé, el pequeño pastel caramelizado con el que Burdeos está discretamente obsesionada, recién salido de una panadería local. Un poco más adelante, hacemos una parada en una tienda de vinos escondida en una de las calles antiguas, donde catamos vino directamente desde el escaparate, servido por alguien que realmente conoce las botellas del estante."
+    - "Seguimos caminando por el resto del centro histórico, y sigo explicando qué estamos viendo y por qué sigue en pie. El tour termina con una comida de verdad, almuerzo o cena según la hora del día, en un lugar donde yo mismo como, donde los visitantes pueden relajarse y comentar lo que han visto."
 icon: "🍷"
 order: 1
 heroImage: "/assets/photos/bordeaux-church-gesture-group.jpg"
@@ -31,9 +68,3 @@ gallery:
   - src: "/assets/photos/bordeaux-tour-meal.jpg"
     alt: "The meal that finishes the tour"
 ---
-
-In Bordeaux, I run a walking tour that combines history, food and wine into one afternoon. Guests meet me in the old town, and we walk together through centuries old streets, past merchant houses, historic churches and hidden courtyards, while I explain how the city grew rich on the wine trade and what that history actually looked like.
-
-Along the way we stop to taste a canelé, the small caramelized cake Bordeaux is quietly obsessed with, fresh from a local bakery. A little further on, we pause at a wine shop tucked into one of the old streets, where we taste wine straight from the window, poured by someone who actually knows the bottles on the shelf.
-
-We keep walking through more of the historic centre, and I keep explaining what we are looking at and why it still stands. The tour finishes with a proper meal, lunch or dinner depending on the time of day, at a place I actually eat at myself, where guests can relax and talk over what they have seen.

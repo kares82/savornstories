@@ -40,3 +40,24 @@ body {
   color: var(--color-ink);
   background: var(--color-cream);
 }
+
+/* Language switcher buttons (EN / FR / ES), shared across every page */
+.lbtn {
+  padding: 5px 14px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  background: transparent;
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  transition: all 0.2s;
+}
+
+.lbtn.active {
+  background: var(--color-cream);
+  color: var(--color-green);
+  border-color: var(--color-cream);
+}

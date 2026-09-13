@@ -5,27 +5,80 @@
 // Bokun dashboard under Distribution > Booking channels > Website widget.
 // Drop that snippet in place of the WhatsApp button below, and delete this
 // comment block and the button.
-interface Props {
-  title: string;
-  price: string | null;
+interface Localized {
+  en: string;
+  fr: string;
+  es: string;
 }
-const { title, price } = Astro.props;
-const waMessage = encodeURIComponent(
-  `Hi Antoine! I would like to book the ${title} tour.`
-);
+interface Props {
+  title: Localized;
+  price: string | null;
+  priceLabel?: Localized;
+}
+const { title, price, priceLabel } = Astro.props;
+
+const waMessages = {
+  en: encodeURIComponent(`Hi Antoine! I would like to book the ${title.en} tour.`),
+  fr: encodeURIComponent(`Bonjour Antoine ! J'aimerais réserver la visite ${title.fr}.`),
+  es: encodeURIComponent(`¡Hola Antoine! Me gustaría reservar el tour ${title.es}.`),
+};
 ---
 <div class="bg-white rounded-2xl border border-border p-5 mt-5">
-  <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">Book this tour</p>
-  {price && <p class="text-2xl font-bold mb-3">{price} <span class="text-xs font-normal text-label">/ person</span></p>}
+  <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">
+    <span data-lang="en">Book this tour</span>
+    <span data-lang="fr" hidden>Réserver cette visite</span>
+    <span data-lang="es" hidden>Reservar este tour</span>
+  </p>
+  {price ? (
+    <p class="text-2xl font-bold mb-3">
+      {price}
+      <span class="text-xs font-normal text-label">
+        <span data-lang="en"> / person</span>
+        <span data-lang="fr" hidden> / personne</span>
+        <span data-lang="es" hidden> / persona</span>
+      </span>
+    </p>
+  ) : priceLabel ? (
+    <p class="text-lg font-bold mb-3">
+      <span data-lang="en">{priceLabel.en}</span>
+      <span data-lang="fr" hidden>{priceLabel.fr}</span>
+      <span data-lang="es" hidden>{priceLabel.es}</span>
+    </p>
+  ) : null}
+
   <a
-    href={`https://wa.me/33626391783?text=${waMessage}`}
+    href={`https://wa.me/33626391783?text=${waMessages.en}`}
+    data-lang="en"
     target="_blank"
     rel="noopener"
     class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
   >
     Message Antoine on WhatsApp to book
   </a>
+  <a
+    href={`https://wa.me/33626391783?text=${waMessages.fr}`}
+    data-lang="fr"
+    hidden
+    target="_blank"
+    rel="noopener"
+    class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
+  >
+    Envoyer un message à Antoine sur WhatsApp pour réserver
+  </a>
+  <a
+    href={`https://wa.me/33626391783?text=${waMessages.es}`}
+    data-lang="es"
+    hidden
+    target="_blank"
+    rel="noopener"
+    class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
+  >
+    Enviar mensaje a Antoine por WhatsApp para reservar
+  </a>
+
   <p class="text-[11px] text-label mt-3 leading-relaxed">
-    Online booking and live availability are coming soon. For now every booking is confirmed directly with Antoine over WhatsApp.
+    <span data-lang="en">Online booking and live availability are coming soon. For now every booking is confirmed directly with Antoine over WhatsApp.</span>
+    <span data-lang="fr" hidden>La réservation en ligne et la disponibilité en temps réel arrivent bientôt. Pour l'instant, chaque réservation est confirmée directement avec Antoine sur WhatsApp.</span>
+    <span data-lang="es" hidden>La reserva en línea y la disponibilidad en tiempo real llegarán pronto. Por ahora, cada reserva se confirma directamente con Antoine por WhatsApp.</span>
   </p>
 </div>

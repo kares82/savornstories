@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BookingWidget from '../../components/BookingWidget.astro';
 
@@ -12,8 +12,7 @@ export async function getStaticPaths() {
 }
 
 const { tour } = Astro.props;
-const { title, summary, duration, price, priceLabel, schedule, meetingPoint, included, goodToKnow, icon, city, heroImage, gallery } = tour.data;
-const { Content } = await render(tour);
+const { title, summary, duration, price, priceLabel, schedule, meetingPoint, included, goodToKnow, description, icon, city, heroImage, gallery } = tour.data;
 
 const cityLabel = city === 'bordeaux' ? 'Bordeaux' : 'Dieppe';
 const accent = city === 'bordeaux' ? 'text-wine' : 'text-teal';
@@ -21,8 +20,8 @@ const accent = city === 'bordeaux' ? 'text-wine' : 'text-teal';
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TouristTrip',
-  name: title,
-  description: summary,
+  name: title.en,
+  description: summary.en,
   touristType: 'Leisure',
   provider: {
     '@type': 'LocalBusiness',
@@ -38,17 +37,21 @@ const jsonLd = {
   ...(price ? { offers: { '@type': 'Offer', price: price.replace('€', ''), priceCurrency: 'EUR' } } : {}),
 };
 ---
-<Layout title={`${title} | Savor & Stories`} description={summary} jsonLd={jsonLd}>
+<Layout title={`${title.en} | Savor & Stories`} description={summary.en} jsonLd={jsonLd}>
   <div class="max-w-[480px] md:max-w-3xl lg:max-w-5xl mx-auto">
     <div class="px-4 md:px-6 pt-5">
-      <a href={`/${city}`} class={`text-xs font-bold ${accent} no-underline`}>&larr; Back to {cityLabel} tours</a>
+      <a href={`/${city}`} class={`text-xs font-bold ${accent} no-underline`}>
+        <span data-lang="en">&larr; Back to {cityLabel} tours</span>
+        <span data-lang="fr" hidden>&larr; Retour aux visites de {cityLabel}</span>
+        <span data-lang="es" hidden>&larr; Volver a los tours de {cityLabel === 'Bordeaux' ? 'Burdeos' : cityLabel}</span>
+      </a>
     </div>
 
     {heroImage && (
       <div class="px-4 md:px-6 pt-4">
         <img
           src={heroImage}
-          alt={title}
+          alt={title.en}
           class="w-full h-56 md:h-80 object-cover rounded-2xl border border-border"
         />
       </div>
@@ -56,14 +59,40 @@ const jsonLd = {
 
     <div class="px-4 md:px-6 pt-4 pb-2 text-center lg:text-left">
       <span class="text-4xl">{icon}</span>
-      <div class="text-[10px] tracking-[0.2em] text-label uppercase font-bold mt-2">{cityLabel} &middot; {duration}</div>
-      <h1 class="text-2xl md:text-3xl font-bold leading-tight mt-1">{title}</h1>
+      <div class="text-[10px] tracking-[0.2em] text-label uppercase font-bold mt-2">
+        {cityLabel === 'Bordeaux' ? (
+          <>
+            <span data-lang="en">Bordeaux</span>
+            <span data-lang="fr" hidden>Bordeaux</span>
+            <span data-lang="es" hidden>Burdeos</span>
+          </>
+        ) : (
+          <span>Dieppe</span>
+        )}
+        &nbsp;&middot;&nbsp;
+        <span data-lang="en">{duration.en}</span>
+        <span data-lang="fr" hidden>{duration.fr}</span>
+        <span data-lang="es" hidden>{duration.es}</span>
+      </div>
+      <h1 class="text-2xl md:text-3xl font-bold leading-tight mt-1">
+        <span data-lang="en">{title.en}</span>
+        <span data-lang="fr" hidden>{title.fr}</span>
+        <span data-lang="es" hidden>{title.es}</span>
+      </h1>
     </div>
 
     <div class="px-4 md:px-6 pb-8 lg:grid lg:grid-cols-[1fr_320px] lg:gap-8 lg:items-start">
       <div>
         <div class="bg-white rounded-2xl border border-border p-5 md:p-7 prose-tour">
-          <Content />
+          <div data-lang="en">
+            {description.en.map((para: string) => <p>{para}</p>)}
+          </div>
+          <div data-lang="fr" hidden>
+            {description.fr.map((para: string) => <p>{para}</p>)}
+          </div>
+          <div data-lang="es" hidden>
+            {description.es.map((para: string) => <p>{para}</p>)}
+          </div>
         </div>
 
         {gallery.length > 0 && (
@@ -78,28 +107,84 @@ const jsonLd = {
           </div>
         )}
 
-        {included.length > 0 && (
+        {included.en.length > 0 && (
           <div class="bg-white rounded-2xl border border-border p-5 md:p-7 mt-4">
-            <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">What's included</p>
+            <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">
+              <span data-lang="en">What's included</span>
+              <span data-lang="fr" hidden>Ce qui est inclus</span>
+              <span data-lang="es" hidden>Qué incluye</span>
+            </p>
             <ul class="text-sm leading-relaxed space-y-2">
-              {included.map((item: string) => <li class="flex gap-2"><span class="text-green">&#10003;</span><span>{item}</span></li>)}
+              {included.en.map((item: string) => <li data-lang="en" class="flex gap-2"><span class="text-green">&#10003;</span><span>{item}</span></li>)}
+              {included.fr.map((item: string) => <li data-lang="fr" hidden class="flex gap-2"><span class="text-green">&#10003;</span><span>{item}</span></li>)}
+              {included.es.map((item: string) => <li data-lang="es" hidden class="flex gap-2"><span class="text-green">&#10003;</span><span>{item}</span></li>)}
             </ul>
           </div>
         )}
 
         <div class="bg-white rounded-2xl border border-border p-5 md:p-7 mt-4">
-          <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">Good to know</p>
+          <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">
+            <span data-lang="en">Good to know</span>
+            <span data-lang="fr" hidden>Bon à savoir</span>
+            <span data-lang="es" hidden>Es bueno saberlo</span>
+          </p>
           <dl class="text-sm space-y-2">
-            <div class="flex justify-between gap-3"><dt class="text-label">Duration</dt><dd class="font-bold text-right">{duration}</dd></div>
-            {schedule && <div class="flex justify-between gap-3"><dt class="text-label">Schedule</dt><dd class="font-bold text-right">{schedule}</dd></div>}
             <div class="flex justify-between gap-3">
-              <dt class="text-label">Meeting point</dt>
+              <dt class="text-label">
+                <span data-lang="en">Duration</span>
+                <span data-lang="fr" hidden>Durée</span>
+                <span data-lang="es" hidden>Duración</span>
+              </dt>
               <dd class="font-bold text-right">
-                {meetingPoint ?? <span class="italic text-label">Shared with you when you book</span>}
+                <span data-lang="en">{duration.en}</span>
+                <span data-lang="fr" hidden>{duration.fr}</span>
+                <span data-lang="es" hidden>{duration.es}</span>
+              </dd>
+            </div>
+            {schedule && (
+              <div class="flex justify-between gap-3">
+                <dt class="text-label">
+                  <span data-lang="en">Schedule</span>
+                  <span data-lang="fr" hidden>Horaires</span>
+                  <span data-lang="es" hidden>Horario</span>
+                </dt>
+                <dd class="font-bold text-right">
+                  <span data-lang="en">{schedule.en}</span>
+                  <span data-lang="fr" hidden>{schedule.fr}</span>
+                  <span data-lang="es" hidden>{schedule.es}</span>
+                </dd>
+              </div>
+            )}
+            <div class="flex justify-between gap-3">
+              <dt class="text-label">
+                <span data-lang="en">Meeting point</span>
+                <span data-lang="fr" hidden>Point de rendez-vous</span>
+                <span data-lang="es" hidden>Punto de encuentro</span>
+              </dt>
+              <dd class="font-bold text-right">
+                {meetingPoint ? (
+                  <>
+                    <span data-lang="en">{meetingPoint.en}</span>
+                    <span data-lang="fr" hidden>{meetingPoint.fr}</span>
+                    <span data-lang="es" hidden>{meetingPoint.es}</span>
+                  </>
+                ) : (
+                  <span class="italic text-label">
+                    <span data-lang="en">Shared with you when you book</span>
+                    <span data-lang="fr" hidden>Communiqué au moment de la réservation</span>
+                    <span data-lang="es" hidden>Se comparte al reservar</span>
+                  </span>
+                )}
               </dd>
             </div>
           </dl>
-          {goodToKnow && <p class="text-xs text-ink-soft leading-relaxed mt-3">{goodToKnow}</p>}
+          {goodToKnow && (
+            <p class="text-xs text-ink-soft leading-relaxed mt-3">
+              <span data-lang="en">{goodToKnow.en}</span>
+              <span data-lang="fr" hidden>{goodToKnow.fr}</span>
+              <span data-lang="es" hidden>{goodToKnow.es}</span>
+            </p>
+          )}
         </div>
 
         <div class="lg:hidden">

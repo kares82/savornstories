@@ -43,5 +43,34 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <slot />
   </main>
   <Footer />
+
+  <script>
+    const STORAGE_KEY = 'ss-lang';
+
+    function applyLang(lang: string) {
+      document.querySelectorAll<HTMLElement>('[data-lang]').forEach((el) => {
+        el.hidden = el.getAttribute('data-lang') !== lang;
+      });
+      document.querySelectorAll<HTMLElement>('.lbtn').forEach((btn) => {
+        btn.classList.toggle('active', btn.getAttribute('data-set-lang') === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+
+    function setLang(lang: string) {
+      localStorage.setItem(STORAGE_KEY, lang);
+      applyLang(lang);
+    }
+
+    const stored = localStorage.getItem(STORAGE_KEY) || 'en';
+    applyLang(stored);
+
+    document.querySelectorAll<HTMLElement>('.lbtn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-set-lang');
+        if (lang) setLang(lang);
+      });
+    });
+  </script>
 </body>
 </html>

@@ -20,47 +20,85 @@ const jsonLd = {
     class="relative bg-cover bg-center px-5 pt-10 pb-8 md:pt-20 md:pb-16 text-center"
     style="background-image: linear-gradient(to bottom right, rgba(61,92,58,.88), rgba(44,74,94,.88)), url('/assets/photos/bordeaux-miroir-deau.jpg')"
   >
-    <h1 class="text-cream text-[28px] md:text-5xl font-bold leading-snug md:leading-tight max-w-[480px] md:max-w-2xl mx-auto">Authentic French experiences, told by locals</h1>
+    <h1 class="text-cream text-[28px] md:text-5xl font-bold leading-snug md:leading-tight max-w-[480px] md:max-w-2xl mx-auto">
+      <span data-lang="en">Authentic French experiences, told by locals</span>
+      <span data-lang="fr" hidden>Des expériences françaises authentiques, racontées par des locaux</span>
+      <span data-lang="es" hidden>Experiencias francesas auténticas, contadas por locales</span>
+    </h1>
     <div class="w-10 h-0.5 bg-gold mx-auto my-4 md:my-6"></div>
   </div>
 
   <div class="max-w-[480px] md:max-w-3xl lg:max-w-5xl mx-auto">
     <div class="px-4 md:px-6 pt-6 md:pt-10 pb-2 text-sm md:text-base leading-relaxed text-ink-soft space-y-4 md:max-w-2xl md:mx-auto">
-      <p>
-        I'm Antoine, and I guide in two French towns that couldn't be more different. Bordeaux is wine, of course, but it's also 2,000 years of history, a river that built the city's fortune, and evenings where people gather over a drink to argue about pétanque. Dieppe is quieter, a place most visitors miss entirely: a working scallop port, a castle above the beach, chalk cliffs, and a 1942 raid that's part of the town's story.
-      </p>
-      <p>
-        I keep my groups small because I want it to feel like a conversation, not a lecture. I'll answer your questions honestly and tell you where I actually go to eat.
-      </p>
+      <div data-lang="en">
+        <p>I'm Antoine, and I guide in two French towns that couldn't be more different. Bordeaux is wine, of course, but it's also 2,000 years of history, a river that built the city's fortune, and evenings where people gather over a drink to argue about pétanque. Dieppe is quieter, a place most visitors miss entirely: a working scallop port, a castle above the beach, chalk cliffs, and a 1942 raid that's part of the town's story.</p>
+        <p class="mt-4">I keep my groups small because I want it to feel like a conversation, not a lecture. I'll answer your questions honestly and tell you where I actually go to eat.</p>
+      </div>
+      <div data-lang="fr" hidden>
+        <p>Je m'appelle Antoine et je guide dans deux villes françaises qui ne pourraient pas être plus différentes. Bordeaux, c'est le vin bien sûr, mais aussi 2 000 ans d'histoire, un fleuve qui a fait la fortune de la ville, et des soirées où l'on se retrouve autour d'un verre pour débattre de pétanque. Dieppe est plus tranquille, un lieu que la plupart des visiteurs ne voient jamais vraiment&nbsp;: un port de pêche à la coquille Saint-Jacques toujours en activité, un château au-dessus de la plage, des falaises de craie, et un raid de 1942 qui fait partie de l'histoire de la ville.</p>
+        <p class="mt-4">Je garde des petits groupes parce que je veux que ça ressemble à une conversation, pas à un cours magistral. Je répondrai à vos questions honnêtement et je vous dirai où je vais vraiment manger.</p>
+      </div>
+      <div data-lang="es" hidden>
+        <p>Soy Antoine, y guío en dos ciudades francesas que no podrían ser más distintas. Burdeos es vino, por supuesto, pero también son 2000 años de historia, un río que hizo la fortuna de la ciudad, y noches en las que la gente se reúne junto a una copa para discutir sobre petanca. Dieppe es más tranquila, un lugar que la mayoría de los visitantes pasa completamente por alto: un puerto pesquero de vieiras en pleno funcionamiento, un castillo sobre la playa, acantilados de creta, y un desembarco de 1942 que forma parte de la historia de la ciudad.</p>
+        <p class="mt-4">Mantengo mis grupos pequeños porque quiero que se sienta como una conversación, no como una clase. Responderé a tus preguntas con sinceridad y te diré dónde como yo de verdad.</p>
+      </div>
     </div>
 
     <div class="px-4 md:px-6 pt-6 md:pt-10 pb-2">
-      <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold text-center mb-4 md:mb-6">Choose your city</p>
+      <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold text-center mb-4 md:mb-6">
+        <span data-lang="en">Choose your city</span>
+        <span data-lang="fr" hidden>Choisissez votre ville</span>
+        <span data-lang="es" hidden>Elige tu ciudad</span>
+      </p>
 
       <div class="md:grid md:grid-cols-2 md:gap-5">
         <a href="/bordeaux" class="block bg-white rounded-2xl border border-border mb-4 md:mb-0 p-5 md:p-7 no-underline text-inherit">
-          <div class="text-[9px] tracking-[0.2em] text-label uppercase font-bold mb-1">South West France</div>
+          <div class="text-[9px] tracking-[0.2em] text-label uppercase font-bold mb-1">
+            <span data-lang="en">South West France</span>
+            <span data-lang="fr" hidden>Sud-Ouest de la France</span>
+            <span data-lang="es" hidden>Suroeste de Francia</span>
+          </div>
           <h2 class="text-xl md:text-2xl font-bold text-wine">Bordeaux</h2>
-          <p class="text-xs md:text-sm text-ink-soft leading-relaxed mt-2">Wine, food, history and a bike ride along the Garonne.</p>
+          <p class="text-xs md:text-sm text-ink-soft leading-relaxed mt-2">
+            <span data-lang="en">Wine, food, history and a bike ride along the Garonne.</span>
+            <span data-lang="fr" hidden>Vin, gastronomie, histoire et une balade à vélo le long de la Garonne.</span>
+            <span data-lang="es" hidden>Vino, gastronomía, historia y un paseo en bicicleta junto al Garona.</span>
+          </p>
         </a>
 
         <a href="/dieppe" class="block bg-white rounded-2xl border border-border mb-4 md:mb-0 p-5 md:p-7 no-underline text-inherit">
-          <div class="text-[9px] tracking-[0.2em] text-label uppercase font-bold mb-1">Normandy</div>
+          <div class="text-[9px] tracking-[0.2em] text-label uppercase font-bold mb-1">
+            <span data-lang="en">Normandy</span>
+            <span data-lang="fr" hidden>Normandie</span>
+            <span data-lang="es" hidden>Normandía</span>
+          </div>
           <h2 class="text-xl md:text-2xl font-bold text-teal">Dieppe</h2>
-          <p class="text-xs md:text-sm text-ink-soft leading-relaxed mt-2">Scallops, a clifftop castle and the story of 1942.</p>
+          <p class="text-xs md:text-sm text-ink-soft leading-relaxed mt-2">
+            <span data-lang="en">Scallops, a clifftop castle and the story of 1942.</span>
+            <span data-lang="fr" hidden>Coquilles Saint-Jacques, un château sur la falaise et l'histoire de 1942.</span>
+            <span data-lang="es" hidden>Vieiras, un castillo en el acantilado y la historia de 1942.</span>
+          </p>
         </a>
       </div>
     </div>
 
     <div class="px-4 md:px-6 pt-4 pb-8 md:pb-16 md:max-w-md md:mx-auto">
-      <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold text-center mb-4">Contact Antoine</p>
+      <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold text-center mb-4">
+        <span data-lang="en">Contact Antoine</span>
+        <span data-lang="fr" hidden>Contacter Antoine</span>
+        <span data-lang="es" hidden>Contactar a Antoine</span>
+      </p>
       <a
         href="https://wa.me/33626391783"
         target="_blank"
         rel="noopener"
         class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-base no-underline mb-3"
       >
-        Message on WhatsApp
+        <span>
+          <span data-lang="en">Message on WhatsApp</span>
+          <span data-lang="fr" hidden>Message sur WhatsApp</span>
+          <span data-lang="es" hidden>Mensaje por WhatsApp</span>
+        </span>
         <span class="block text-xs font-normal opacity-90">+33 6 26 39 17 83</span>
       </a>
     </div>

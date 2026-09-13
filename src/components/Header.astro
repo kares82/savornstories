@@ -1,10 +1,10 @@
 ---
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/bordeaux', label: 'Bordeaux' },
-  { href: '/dieppe', label: 'Dieppe' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', en: 'Home', fr: 'Accueil', es: 'Inicio' },
+  { href: '/bordeaux', en: 'Bordeaux', fr: 'Bordeaux', es: 'Burdeos' },
+  { href: '/dieppe', en: 'Dieppe', fr: 'Dieppe', es: 'Dieppe' },
+  { href: '/about', en: 'About', fr: 'À propos', es: 'Sobre mí' },
+  { href: '/contact', en: 'Contact', fr: 'Contact', es: 'Contacto' },
 ];
 const path = Astro.url.pathname;
 ---
@@ -17,15 +17,22 @@ const path = Astro.url.pathname;
     <nav class="flex gap-2.5 sm:gap-3 md:gap-6 flex-wrap justify-end">
       {links.map((link) => {
         const active = path === link.href || (link.href !== '/' && path.startsWith(link.href));
+        const cls = `text-[10px] sm:text-[11px] md:text-xs font-bold tracking-wide uppercase whitespace-nowrap ${active ? 'text-cream' : 'text-teal-soft'}`;
         return (
-          <a
-            href={link.href}
-            class={`text-[10px] sm:text-[11px] md:text-xs font-bold tracking-wide uppercase whitespace-nowrap ${active ? 'text-cream' : 'text-teal-soft'}`}
-          >
-            {link.label}
+          <a href={link.href} class={cls}>
+            <span data-lang="en">{link.en}</span>
+            <span data-lang="fr" hidden>{link.fr}</span>
+            <span data-lang="es" hidden>{link.es}</span>
           </a>
         );
       })}
     </nav>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-[480px] md:max-w-3xl lg:max-w-5xl mx-auto flex justify-center gap-2 px-4 md:px-6 py-2">
+      <button class="lbtn active" data-set-lang="en" type="button">EN</button>
+      <button class="lbtn" data-set-lang="fr" type="button">FR</button>
+      <button class="lbtn" data-set-lang="es" type="button">ES</button>
+    </div>
   </div>
 </header>

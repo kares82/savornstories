@@ -1,12 +1,18 @@
 ---
+interface Localized {
+  en: string;
+  fr: string;
+  es: string;
+}
+
 interface Props {
   slug: string;
   icon: string;
-  title: string;
-  summary: string;
-  duration: string;
+  title: Localized;
+  summary: Localized;
+  duration: Localized;
   price: string | null;
-  priceLabel?: string;
+  priceLabel?: Localized;
   accent: 'bordeaux' | 'dieppe';
   heroImage?: string;
 }
@@ -19,22 +25,55 @@ const goColor = accent === 'bordeaux' ? 'text-wine' : 'text-teal';
   class="block bg-white rounded-2xl border border-border mb-4 overflow-hidden no-underline text-inherit transition-transform active:scale-[0.98]"
 >
   {heroImage ? (
-    <img src={heroImage} alt={title} class="w-full h-[110px] object-cover" />
+    <img src={heroImage} alt={title.en} class="w-full h-[110px] object-cover" />
   ) : (
     <div class="h-[70px] flex items-center justify-center text-3xl bg-green-soft">
       <span>{icon}</span>
     </div>
   )}
   <div class="p-4">
-    <div class="text-[9px] tracking-[0.2em] text-label uppercase font-bold mb-1">{duration}</div>
-    <div class="text-lg font-bold leading-tight">{title}</div>
-    <p class="text-xs text-ink-soft leading-relaxed mt-2">{summary}</p>
+    <div class="text-[9px] tracking-[0.2em] text-label uppercase font-bold mb-1">
+      <span data-lang="en">{duration.en}</span>
+      <span data-lang="fr" hidden>{duration.fr}</span>
+      <span data-lang="es" hidden>{duration.es}</span>
+    </div>
+    <div class="text-lg font-bold leading-tight">
+      <span data-lang="en">{title.en}</span>
+      <span data-lang="fr" hidden>{title.fr}</span>
+      <span data-lang="es" hidden>{title.es}</span>
+    </div>
+    <p class="text-xs text-ink-soft leading-relaxed mt-2">
+      <span data-lang="en">{summary.en}</span>
+      <span data-lang="fr" hidden>{summary.fr}</span>
+      <span data-lang="es" hidden>{summary.es}</span>
+    </p>
     <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#eee4d4]">
       <div class="text-[11px] text-label">
-        {price ? <><strong class="text-base text-ink">{price}</strong> / person</> : (priceLabel ?? 'On request')}
+        {price ? (
+          <>
+            <strong class="text-base text-ink">{price}</strong>
+            <span data-lang="en"> / person</span>
+            <span data-lang="fr" hidden> / personne</span>
+            <span data-lang="es" hidden> / persona</span>
+          </>
+        ) : priceLabel ? (
+          <>
+            <span data-lang="en">{priceLabel.en}</span>
+            <span data-lang="fr" hidden>{priceLabel.fr}</span>
+            <span data-lang="es" hidden>{priceLabel.es}</span>
+          </>
+        ) : (
+          <>
+            <span data-lang="en">On request</span>
+            <span data-lang="fr" hidden>Sur demande</span>
+            <span data-lang="es" hidden>A consultar</span>
+          </>
+        )}
       </div>
       <div class={`text-xs font-bold flex items-center gap-1 ${goColor}`}>
-        Details &rarr;
+        <span data-lang="en">Details &rarr;</span>
+        <span data-lang="fr" hidden>Détails &rarr;</span>
+        <span data-lang="es" hidden>Detalles &rarr;</span>
       </div>
     </div>
   </div>

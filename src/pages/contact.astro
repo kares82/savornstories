@@ -6,9 +6,17 @@ import Layout from '../layouts/Layout.astro';
   description="Message Antoine directly on WhatsApp to book a tour in Bordeaux or Dieppe, or ask a question first."
 >
   <div class="bg-green px-5 pt-8 pb-8 md:pt-14 md:pb-14 text-center">
-    <h1 class="text-cream text-2xl md:text-4xl font-bold">Contact &amp; Booking Help</h1>
+    <h1 class="text-cream text-2xl md:text-4xl font-bold">
+      <span data-lang="en">Contact &amp; Booking Help</span>
+      <span data-lang="fr" hidden>Contact &amp; Aide à la réservation</span>
+      <span data-lang="es" hidden>Contacto y ayuda para reservar</span>
+    </h1>
     <div class="w-10 h-0.5 bg-gold mx-auto my-3"></div>
-    <p class="text-[13px] md:text-base text-[#e8e2d4] italic">Every booking goes through me directly, not a call center.</p>
+    <p class="text-[13px] md:text-base text-[#e8e2d4] italic">
+      <span data-lang="en">Every booking goes through me directly, not a call center.</span>
+      <span data-lang="fr" hidden>Chaque réservation passe directement par moi, pas par un centre d'appels.</span>
+      <span data-lang="es" hidden>Cada reserva pasa directamente por mí, no por un centro de llamadas.</span>
+    </p>
   </div>
 
   <div class="max-w-[480px] md:max-w-xl mx-auto">
@@ -20,7 +28,9 @@ import Layout from '../layouts/Layout.astro';
           rel="noopener"
           class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-base no-underline mb-3"
         >
-          Message on WhatsApp
+          <span data-lang="en">Message on WhatsApp</span>
+          <span data-lang="fr" hidden>Message sur WhatsApp</span>
+          <span data-lang="es" hidden>Mensaje por WhatsApp</span>
         </a>
         <a
           href="mailto:contact@savornstories.com"
@@ -32,8 +42,14 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="px-4 md:px-6 pb-8 md:pb-14 text-sm md:text-base text-ink-soft leading-relaxed">
-      <p>
+      <p data-lang="en">
         Tell me which city, roughly how many people, and what dates you have in mind, and I will get back to you with times that work. If you're not sure which tour fits, just describe what you're after and I'll point you the right way.
+      </p>
+      <p data-lang="fr" hidden>
+        Dites-moi quelle ville, à peu près combien de personnes, et quelles dates vous avez en tête, et je reviendrai vers vous avec des horaires qui conviennent. Si vous ne savez pas quelle visite choisir, décrivez simplement ce que vous cherchez et je vous orienterai.
+      </p>
+      <p data-lang="es" hidden>
+        Dime qué ciudad, aproximadamente cuántas personas y qué fechas tienes en mente, y te responderé con horarios que funcionen. Si no estás seguro de qué tour te conviene, simplemente describe lo que buscas y te orientaré.
       </p>
     </div>
   </div>
