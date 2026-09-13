@@ -1,3 +1,8 @@
+// Cloudflare Workers Builds settings for this project must use:
+//   Build command:  npm run build
+//   Deploy command: npx wrangler deploy
+// (not "npx wrangler versions upload", which only stages a version at 0%
+// traffic and never actually goes live).
 {
   "name": "tours",
   "compatibility_date": "2026-09-13",
