@@ -29,13 +29,13 @@ included:
 description:
   en:
     - "Dieppe is the scallop capital of France, and I want you to see why. We visit the working fishing port in the early morning light, and watch the day's catch come in at the fish market."
-    - "Then we sit down for a fresh seafood tasting overlooking the harbour, coquilles Saint-Jacques included. This is a working port, not a display for visitors, so the timing depends a little on the boats, and I will always tell you honestly what is fresh that day."
+    - "Then we sit down for a fresh seafood tasting overlooking the harbour, coquilles Saint-Jacques included. It's a real working port, so the timing depends a little on the boats, and I will always tell you honestly what is fresh that day."
   fr:
     - "Dieppe est la capitale française de la coquille Saint-Jacques, et je veux que vous voyiez pourquoi. Nous visitons le port de pêche en activité dans la lumière du petit matin, et nous regardons la pêche du jour arriver à la criée."
-    - "Ensuite, nous nous installons pour une dégustation de fruits de mer frais face au port, coquilles Saint-Jacques incluses. C'est un port en activité, pas une vitrine pour visiteurs, donc les horaires dépendent un peu des bateaux, et je vous dirai toujours honnêtement ce qui est frais ce jour-là."
+    - "Ensuite, nous nous installons pour une dégustation de fruits de mer frais face au port, coquilles Saint-Jacques incluses. C'est un vrai port en activité, donc les horaires dépendent un peu des bateaux, et je vous dirai toujours honnêtement ce qui est frais ce jour-là."
   es:
     - "Dieppe es la capital francesa de la vieira, y quiero que veas por qué. Visitamos el puerto pesquero en activo con la luz de la mañana temprana, y vemos llegar la pesca del día a la lonja."
-    - "Después nos sentamos para una degustación de marisco fresco frente al puerto, con vieiras incluidas. Este es un puerto en activo, no un montaje para visitantes, así que el horario depende un poco de los barcos, y siempre te diré con honestidad qué está fresco ese día."
+    - "Después nos sentamos para una degustación de marisco fresco frente al puerto, con vieiras incluidas. Es un puerto en activo de verdad, así que el horario depende un poco de los barcos, y siempre te diré con honestidad qué está fresco ese día."
 icon: "🦪"
 order: 2
 heroImage: "/assets/photos/dieppe-scallops-boat.jpg"
