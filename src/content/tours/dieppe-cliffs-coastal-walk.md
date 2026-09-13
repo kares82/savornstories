@@ -8,6 +8,7 @@ included:
   - "A guided walk along the chalk cliffs to Pourville-sur-Mer"
 icon: "⛰️"
 order: 4
+heroImage: "/assets/photos/dieppe-cliffs-walk.jpg"
 ---
 
 I walk with you along the white chalk cliffs that once inspired the Impressionist painters, from Dieppe's seafront to the quiet village of Pourville-sur-Mer.

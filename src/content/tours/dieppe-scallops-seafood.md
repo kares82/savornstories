@@ -10,6 +10,7 @@ included:
   - "A fresh seafood tasting overlooking the harbour, coquilles Saint-Jacques included"
 icon: "🦪"
 order: 2
+heroImage: "/assets/photos/dieppe-scallops-boat.jpg"
 ---
 
 Dieppe is the scallop capital of France, and I want you to see why. We visit the working fishing port in the early morning light, and watch the day's catch come in at the fish market.

@@ -10,6 +10,7 @@ included:
   - "Local snacks, including andouille de Dieppe and buckwheat galettes"
 icon: "🍏"
 order: 5
+heroImage: "/assets/photos/dieppe-norman-apero.jpg"
 ---
 
 I host a proper Norman apéro with you in a cosy spot near the harbour: artisanal cider, a taste of calvados, and local snacks like andouille de Dieppe and buckwheat galettes.
