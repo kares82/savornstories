@@ -10,6 +10,7 @@ included:
   - "A coffee stop along the route"
 icon: "🚴"
 order: 3
+heroImage: "/assets/photos/bordeaux-bike-riverside.jpg"
 ---
 
 In Bordeaux, I lead a bike tour along the Garonne river, riding the flat path that runs right through the city. Guests meet me near the river, and we ride together past the eighteenth century waterfront, through Chartrons where the wine merchants once kept their warehouses, and out toward the old submarine base that the city has since turned into something completely different.

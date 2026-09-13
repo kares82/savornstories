@@ -10,6 +10,7 @@ included:
   - "A local apéritif with the small snacks that go with it"
 icon: "🥂"
 order: 2
+heroImage: "/assets/photos/bordeaux-petanque-riverside.jpg"
 ---
 
 In Bordeaux, I run an evening experience built around pétanque and the French apéritif, the small ritual of drinks and snacks that happens before dinner most evenings here. Guests meet me at a real court where locals actually play, somewhere with a bit of local character rather than a space set up only for visitors.
