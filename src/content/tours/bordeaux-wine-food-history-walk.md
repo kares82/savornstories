@@ -14,9 +14,9 @@ duration:
   es: "3 horas"
 price: "90€"
 schedule:
-  en: "Monday to Saturday, departures at 10:30 and 17:30"
-  fr: "Du lundi au samedi, départs à 10h30 et 17h30"
-  es: "De lunes a sábado, salidas a las 10:30 y las 17:30"
+  en: "Monday to Saturday, departures at 11:00 and 17:30"
+  fr: "Du lundi au samedi, départs à 11h00 et 17h30"
+  es: "De lunes a sábado, salidas a las 11:00 y las 17:30"
 included:
   en:
     - "A canelé tasting at a local bakery"
