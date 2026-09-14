@@ -16,7 +16,24 @@ const jsonLd = {
   description="Authentic French experiences, told by locals. Private wine, food and history tours in Bordeaux and Dieppe with Antoine."
   jsonLd={jsonLd}
 >
-  <div class="bg-green px-5 pt-8 pb-8 md:pt-14 md:pb-16 text-center">
+  <div class="flex">
+    <a
+      href="/bordeaux"
+      class="relative flex-1 h-36 sm:h-44 md:h-64 lg:h-80 bg-cover bg-center overflow-hidden"
+      style="background-image: linear-gradient(to bottom, rgba(61,92,58,.25), rgba(30,46,29,.75)), url('/assets/photos/bordeaux-miroir-deau.jpg')"
+    >
+      <span class="absolute bottom-3 left-0 right-0 text-center text-cream text-xs md:text-base font-bold tracking-wide uppercase">Bordeaux</span>
+    </a>
+    <a
+      href="/dieppe"
+      class="relative flex-1 h-36 sm:h-44 md:h-64 lg:h-80 bg-cover bg-center overflow-hidden"
+      style="background-image: linear-gradient(to bottom, rgba(23,74,84,.25), rgba(14,46,52,.75)), url('/assets/photos/dieppe-castle.jpg')"
+    >
+      <span class="absolute bottom-3 left-0 right-0 text-center text-cream text-xs md:text-base font-bold tracking-wide uppercase">Dieppe</span>
+    </a>
+  </div>
+
+  <div class="bg-green px-5 pt-6 pb-8 md:pt-10 md:pb-16 text-center">
     <img
       src="/assets/savorstories-logo.png"
       alt="Savor & Stories, Bordeaux, France"
