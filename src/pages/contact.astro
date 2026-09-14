@@ -41,7 +41,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
-    <div class="px-4 md:px-6 pb-8 md:pb-14 text-sm md:text-base text-ink-soft leading-relaxed">
+    <div class="px-4 md:px-6 pb-8 md:pb-10 text-sm md:text-base text-ink-soft leading-relaxed">
       <p data-lang="en">
         Tell me which city, roughly how many people, and what dates you have in mind, and I will get back to you with times that work. If you're not sure which tour fits, just describe what you're after and I'll point you the right way.
       </p>
@@ -50,6 +50,23 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <p data-lang="es" hidden>
         Dime qué ciudad, aproximadamente cuántas personas y qué fechas tienes en mente, y te responderé con horarios que funcionen. Si no estás seguro de qué tour te conviene, simplemente describe lo que buscas y te orientaré.
+      </p>
+    </div>
+
+    <div class="px-4 md:px-6 pb-8 md:pb-14">
+      <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold text-center mb-4">
+        <span data-lang="en">Antoine's card</span>
+        <span data-lang="fr" hidden>La carte d'Antoine</span>
+        <span data-lang="es" hidden>La tarjeta de Antoine</span>
+      </p>
+      <div class="flex justify-center gap-4 md:gap-6">
+        <img src="/assets/savorstories-logo.png" alt="The front of Antoine's card" class="w-28 md:w-36 rounded-lg border border-border shadow-sm" />
+        <img src="/assets/savorstories-card-back.png" alt="The back of Antoine's card, with a QR code to this site" class="w-28 md:w-36 rounded-lg border border-border shadow-sm" />
+      </div>
+      <p class="text-xs text-label text-center mt-3">
+        <span data-lang="en">This is the card he hands out, front and back. Same site either way you got here.</span>
+        <span data-lang="fr" hidden>Voici la carte qu'il distribue, recto et verso. Vous arrivez au même endroit, quel que soit le chemin.</span>
+        <span data-lang="es" hidden>Esta es la tarjeta que reparte, delante y detrás. Llegas al mismo sitio, sea como sea que hayas llegado.</span>
       </p>
     </div>
   </div>
