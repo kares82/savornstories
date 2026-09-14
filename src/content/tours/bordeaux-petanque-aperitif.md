@@ -14,9 +14,9 @@ duration:
   es: "1,5 horas"
 price: "90€"
 schedule:
-  en: "Tuesday to Saturday, departure at 18:00"
-  fr: "Du mardi au samedi, départ à 18h00"
-  es: "De martes a sábado, salida a las 18:00"
+  en: "Every day, departure at 18:00"
+  fr: "Tous les jours, départ à 18h00"
+  es: "Todos los días, salida a las 18:00"
 included:
   en:
     - "A ten minute lesson in pétanque, enough to get playing"

@@ -14,9 +14,9 @@ duration:
   es: "2 horas"
 price: "30€"
 schedule:
-  en: "Wednesday to Sunday, departure at 15:00"
-  fr: "Du mercredi au dimanche, départ à 15h00"
-  es: "De miércoles a domingo, salida a las 15:00"
+  en: "Every day, departure at 15:00"
+  fr: "Tous les jours, départ à 15h00"
+  es: "Todos los días, salida a las 15:00"
 included:
   en:
     - "A guided walk through Darwin and the street art around it"

@@ -14,9 +14,9 @@ duration:
   es: "3 horas, unos 12 kilómetros"
 price: "39€"
 schedule:
-  en: "Wednesday to Sunday, departure at 9:30"
-  fr: "Du mercredi au dimanche, départ à 9h30"
-  es: "De miércoles a domingo, salida a las 9:30"
+  en: "Every day, departure at 9:30"
+  fr: "Tous les jours, départ à 9h30"
+  es: "Todos los días, salida a las 9:30"
 included:
   en:
     - "Bike and helmet, provided for the ride"
