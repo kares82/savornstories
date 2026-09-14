@@ -36,20 +36,29 @@ const jsonLd = {
   </div>
 
   <div class="max-w-[480px] md:max-w-3xl lg:max-w-5xl mx-auto">
-    <div class="px-4 md:px-6 pt-6 md:pt-10 pb-2 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5">
-      {tours.map((tour) => (
-        <TourCard
-          slug={tour.id}
-          icon={tour.data.icon}
-          title={tour.data.title}
-          summary={tour.data.summary}
-          duration={tour.data.duration}
-          price={tour.data.price}
-          priceLabel={tour.data.priceLabel}
-          heroImage={tour.data.heroImage}
-          accent="dieppe"
-        />
-      ))}
+    <div class="px-4 md:px-6 pt-6 md:pt-10 pb-2 md:grid md:grid-cols-2 lg:grid-cols-6 md:gap-5">
+      {tours.map((tour, i) => {
+        // Five tours don't divide evenly into three columns, which used to
+        // leave an orphaned pair on their own row. On a six column track,
+        // the first three cards each take two columns (three per row) and
+        // the last two each take three (two per row, filling it exactly).
+        const lgSpan = tours.length === 5 ? (i < 3 ? 'lg:col-span-2' : 'lg:col-span-3') : 'lg:col-span-2';
+        return (
+          <div class={lgSpan}>
+            <TourCard
+              slug={tour.id}
+              icon={tour.data.icon}
+              title={tour.data.title}
+              summary={tour.data.summary}
+              duration={tour.data.duration}
+              price={tour.data.price}
+              priceLabel={tour.data.priceLabel}
+              heroImage={tour.data.heroImage}
+              accent="dieppe"
+            />
+          </div>
+        );
+      })}
     </div>
 
     <div class="px-4 md:px-6 pb-4">
