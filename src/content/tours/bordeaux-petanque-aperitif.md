@@ -27,6 +27,10 @@ included:
   es:
     - "Una lección de diez minutos de petanca, suficiente para empezar a jugar"
     - "Un aperitivo local con los pequeños aperitivos que lo acompañan"
+goodToKnow:
+  en: "Wear flat, comfortable shoes, since we play standing on gravel. The apéritif includes alcohol, so please bring ID if you look under 25, and let me know beforehand if you would rather stick to something non alcoholic. Evenings by the river can get cool, so bring a light layer outside summer."
+  fr: "Portez des chaussures plates et confortables, car nous jouons debout sur du gravier. L'apéritif comprend de l'alcool, munissez-vous donc d'une pièce d'identité si vous semblez avoir moins de 25 ans, et prévenez-moi si vous préférez rester sur une option sans alcool. Les soirées au bord du fleuve peuvent être fraîches, pensez à une petite veste en dehors de l'été."
+  es: "Usa calzado plano y cómodo, ya que jugamos de pie sobre grava. El aperitivo incluye alcohol, así que trae tu identificación si aparentas menos de 25 años, y avísame antes si prefieres quedarte con una opción sin alcohol. Las tardes junto al río pueden refrescar, así que trae una chaqueta ligera fuera del verano."
 description:
   en:
     - "In Bordeaux, I run an evening experience built around pétanque and the French apéritif, the small ritual of drinks and snacks that happens before dinner most evenings here. Guests meet me at a real court with genuine local character, where locals actually play."

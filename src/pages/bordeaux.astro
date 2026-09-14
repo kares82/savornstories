@@ -8,11 +8,31 @@ const tours = (await getCollection('tours', ({ data }) => data.city === 'bordeau
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Savor & Stories, Bordeaux',
-  telephone: '+33626391783',
-  email: 'contact@savornstories.com',
-  address: { '@type': 'PostalAddress', addressLocality: 'Bordeaux', addressCountry: 'FR' },
+  '@graph': [
+    {
+      '@type': 'LocalBusiness',
+      name: 'Savor & Stories, Bordeaux',
+      telephone: '+33626391783',
+      email: 'contact@savornstories.com',
+      address: { '@type': 'PostalAddress', addressLocality: 'Bordeaux', addressCountry: 'FR' },
+    },
+    {
+      '@type': 'ItemList',
+      itemListElement: tours.map((tour, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `https://savorstories.com/tours/${tour.id}`,
+        name: tour.data.title.en,
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://savorstories.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Bordeaux', item: 'https://savorstories.com/bordeaux' },
+      ],
+    },
+  ],
 };
 ---
 <Layout

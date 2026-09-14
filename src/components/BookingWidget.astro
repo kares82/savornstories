@@ -1,10 +1,14 @@
 ---
-// TEMPORARY: Bokun's booking widget and availability calendar go here once
-// Antoine's Bokun account and tour listings are set up. Bokun gives an embed
-// snippet per tour (usually a <div> plus a small script tag) from the
-// Bokun dashboard under Distribution > Booking channels > Website widget.
-// Drop that snippet in place of the WhatsApp button below, and delete this
-// comment block and the button.
+// Booking requests are sent straight to Antoine's n8n workflow, which
+// notifies him instantly, puts a tentative hold on his Google Calendar,
+// and sends the guest an automatic acknowledgement in their own language.
+// See /n8n/savorstories-booking-workflow.json for the workflow to import,
+// and its README for setup steps.
+//
+// IMPORTANT: replace the placeholder below with the real production
+// webhook URL from the "Webhook" node once the workflow is active in n8n.
+const N8N_WEBHOOK_URL = 'https://REPLACE-WITH-YOUR-N8N-DOMAIN/webhook/savorstories-booking';
+
 interface Localized {
   en: string;
   fr: string;
@@ -23,7 +27,7 @@ const waMessages = {
   es: encodeURIComponent(`¡Hola Antoine! Me gustaría reservar el tour ${title.es}.`),
 };
 ---
-<div class="bg-white rounded-2xl border border-border p-5 mt-5">
+<div class="bg-white rounded-2xl border border-border p-5 mt-5" data-booking-widget data-webhook={N8N_WEBHOOK_URL} data-tour-en={title.en} data-tour-fr={title.fr} data-tour-es={title.es} data-price={price ?? ''}>
   <p class="text-[10px] tracking-[0.15em] text-label uppercase font-bold mb-3">
     <span data-lang="en">Book this tour</span>
     <span data-lang="fr" hidden>Réserver cette visite</span>
@@ -46,14 +50,107 @@ const waMessages = {
     </p>
   ) : null}
 
+  <form data-booking-form class="space-y-2.5">
+    <div>
+      <label class="block text-[11px] font-bold text-label mb-1" for="bw-name">
+        <span data-lang="en">Name</span>
+        <span data-lang="fr" hidden>Nom</span>
+        <span data-lang="es" hidden>Nombre</span>
+      </label>
+      <input id="bw-name" name="name" type="text" required class="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+    </div>
+    <div>
+      <label class="block text-[11px] font-bold text-label mb-1" for="bw-email">
+        <span data-lang="en">Email</span>
+        <span data-lang="fr" hidden>E-mail</span>
+        <span data-lang="es" hidden>Correo</span>
+      </label>
+      <input id="bw-email" name="email" type="email" required class="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+    </div>
+    <div>
+      <label class="block text-[11px] font-bold text-label mb-1" for="bw-phone">
+        <span data-lang="en">Phone (optional, WhatsApp is fine)</span>
+        <span data-lang="fr" hidden>Téléphone (facultatif, WhatsApp convient)</span>
+        <span data-lang="es" hidden>Teléfono (opcional, WhatsApp también sirve)</span>
+      </label>
+      <input id="bw-phone" name="phone" type="tel" class="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+    </div>
+    <div class="flex gap-2.5">
+      <div class="flex-1">
+        <label class="block text-[11px] font-bold text-label mb-1" for="bw-date">
+          <span data-lang="en">Preferred date</span>
+          <span data-lang="fr" hidden>Date souhaitée</span>
+          <span data-lang="es" hidden>Fecha preferida</span>
+        </label>
+        <input id="bw-date" name="date" type="date" required class="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+      </div>
+      <div class="w-20">
+        <label class="block text-[11px] font-bold text-label mb-1" for="bw-people">
+          <span data-lang="en">People</span>
+          <span data-lang="fr" hidden>Personnes</span>
+          <span data-lang="es" hidden>Personas</span>
+        </label>
+        <input id="bw-people" name="people" type="number" min="1" value="2" required class="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+      </div>
+    </div>
+    <div>
+      <label class="block text-[11px] font-bold text-label mb-1" for="bw-message">
+        <span data-lang="en">Anything Antoine should know? (optional)</span>
+        <span data-lang="fr" hidden>Une précision pour Antoine ? (facultatif)</span>
+        <span data-lang="es" hidden>¿Algo que Antoine deba saber? (opcional)</span>
+      </label>
+      <textarea id="bw-message" name="message" rows="2" class="w-full rounded-lg border border-border px-3 py-2 text-sm"></textarea>
+    </div>
+
+    <button
+      type="submit"
+      data-submit-btn
+      class="flex items-center justify-center w-full py-4 bg-green text-white rounded-2xl font-bold text-sm mt-1"
+    >
+      <span data-lang="en">Send booking request</span>
+      <span data-lang="fr" hidden>Envoyer la demande de réservation</span>
+      <span data-lang="es" hidden>Enviar solicitud de reserva</span>
+    </button>
+
+    <p data-form-error hidden class="text-xs text-wine leading-relaxed mt-1">
+      <span data-lang="en">Something went wrong sending that. Please try again, or message Antoine directly below.</span>
+      <span data-lang="fr" hidden>Une erreur est survenue lors de l'envoi. Merci de réessayer, ou d'écrire directement à Antoine ci-dessous.</span>
+      <span data-lang="es" hidden>Algo falló al enviarlo. Inténtalo de nuevo, o escribe directamente a Antoine más abajo.</span>
+    </p>
+  </form>
+
+  <div data-form-success hidden class="text-center py-4">
+    <p class="text-3xl mb-2">✅</p>
+    <p class="text-sm font-bold">
+      <span data-lang="en">Request sent!</span>
+      <span data-lang="fr" hidden>Demande envoyée&nbsp;!</span>
+      <span data-lang="es" hidden>¡Solicitud enviada!</span>
+    </p>
+    <p class="text-xs text-ink-soft mt-1 leading-relaxed">
+      <span data-lang="en">Antoine will confirm with you by email or WhatsApp shortly.</span>
+      <span data-lang="fr" hidden>Antoine vous confirmera par e-mail ou WhatsApp très bientôt.</span>
+      <span data-lang="es" hidden>Antoine te confirmará por correo o WhatsApp muy pronto.</span>
+    </p>
+  </div>
+
+  <div class="flex items-center gap-2 my-4">
+    <div class="h-px bg-border flex-1"></div>
+    <span class="text-[10px] text-label uppercase font-bold">
+      <span data-lang="en">or</span>
+      <span data-lang="fr" hidden>ou</span>
+      <span data-lang="es" hidden>o</span>
+    </span>
+    <div class="h-px bg-border flex-1"></div>
+  </div>
+
   <a
     href={`https://wa.me/33626391783?text=${waMessages.en}`}
     data-lang="en"
     target="_blank"
     rel="noopener"
-    class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
+    class="flex items-center justify-center gap-3 w-full py-3.5 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
   >
-    Message Antoine on WhatsApp to book
+    Message Antoine on WhatsApp
   </a>
   <a
     href={`https://wa.me/33626391783?text=${waMessages.fr}`}
@@ -61,9 +158,9 @@ const waMessages = {
     hidden
     target="_blank"
     rel="noopener"
-    class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
+    class="flex items-center justify-center gap-3 w-full py-3.5 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
   >
-    Envoyer un message à Antoine sur WhatsApp pour réserver
+    Écrire à Antoine sur WhatsApp
   </a>
   <a
     href={`https://wa.me/33626391783?text=${waMessages.es}`}
@@ -71,14 +168,63 @@ const waMessages = {
     hidden
     target="_blank"
     rel="noopener"
-    class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
+    class="flex items-center justify-center gap-3 w-full py-3.5 bg-whatsapp text-white rounded-2xl font-bold text-sm no-underline"
   >
-    Enviar mensaje a Antoine por WhatsApp para reservar
+    Escribir a Antoine por WhatsApp
   </a>
 
   <p class="text-[11px] text-label mt-3 leading-relaxed">
-    <span data-lang="en">Online booking and live availability are coming soon. For now every booking is confirmed directly with Antoine over WhatsApp.</span>
-    <span data-lang="fr" hidden>La réservation en ligne et la disponibilité en temps réel arrivent bientôt. Pour l'instant, chaque réservation est confirmée directement avec Antoine sur WhatsApp.</span>
-    <span data-lang="es" hidden>La reserva en línea y la disponibilidad en tiempo real llegarán pronto. Por ahora, cada reserva se confirma directamente con Antoine por WhatsApp.</span>
+    <span data-lang="en">This sends a request, not an instant confirmation. Antoine confirms every booking personally.</span>
+    <span data-lang="fr" hidden>Ceci envoie une demande, pas une confirmation instantanée. Antoine confirme chaque réservation personnellement.</span>
+    <span data-lang="es" hidden>Esto envía una solicitud, no una confirmación instantánea. Antoine confirma cada reserva personalmente.</span>
   </p>
 </div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-booking-widget]').forEach((widget) => {
+    const form = widget.querySelector<HTMLFormElement>('[data-booking-form]');
+    const errorEl = widget.querySelector<HTMLElement>('[data-form-error]');
+    const successEl = widget.querySelector<HTMLElement>('[data-form-success]');
+    const submitBtn = widget.querySelector<HTMLButtonElement>('[data-submit-btn]');
+    const webhookUrl = widget.dataset.webhook || '';
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (errorEl) errorEl.hidden = true;
+      if (submitBtn) submitBtn.disabled = true;
+
+      const data = new FormData(form);
+      const lang = document.documentElement.lang || 'en';
+      const payload = {
+        name: data.get('name'),
+        email: data.get('email'),
+        phone: data.get('phone') || null,
+        date: data.get('date'),
+        people: data.get('people'),
+        message: data.get('message') || null,
+        lang,
+        tour: {
+          en: widget.dataset.tourEn,
+          fr: widget.dataset.tourFr,
+          es: widget.dataset.tourEs,
+        },
+        price: widget.dataset.price || null,
+        pageUrl: window.location.href,
+      };
+
+      try {
+        const res = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error('Request failed');
+        form.hidden = true;
+        if (successEl) successEl.hidden = false;
+      } catch (err) {
+        if (errorEl) errorEl.hidden = false;
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  });
+</script>

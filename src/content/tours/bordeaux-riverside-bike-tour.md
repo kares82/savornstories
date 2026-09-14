@@ -27,6 +27,10 @@ included:
   es:
     - "Bicicleta y casco incluidos para el paseo"
     - "Una parada para tomar café en el camino"
+goodToKnow:
+  en: "Wear comfortable clothes you can move in, and closed shoes rather than sandals. The route is flat and suitable for beginners, but let me know in advance if anyone in the group hasn't ridden a bike in a long time. Bring a light rain layer outside summer, since we ride rain or shine unless the weather turns genuinely unsafe."
+  fr: "Portez des vêtements confortables dans lesquels vous pouvez bouger, et des chaussures fermées plutôt que des sandales. Le parcours est plat et adapté aux débutants, mais prévenez-moi à l'avance si quelqu'un dans le groupe n'a pas fait de vélo depuis longtemps. Prévoyez une veste de pluie légère en dehors de l'été, car nous roulons par tous les temps sauf si les conditions deviennent vraiment dangereuses."
+  es: "Usa ropa cómoda en la que puedas moverte, y calzado cerrado en vez de sandalias. La ruta es llana y adecuada para principiantes, pero avísame con antelación si alguien del grupo no ha montado en bici desde hace tiempo. Trae una chaqueta ligera de lluvia fuera del verano, ya que salimos con cualquier tiempo salvo que las condiciones sean realmente peligrosas."
 description:
   en:
     - "In Bordeaux, I lead a bike tour along the Garonne river, riding the flat path that runs right through the city. Guests meet me near the river, and we ride together past the eighteenth century waterfront, through Chartrons where the wine merchants once kept their warehouses, and out toward the old submarine base that the city has since turned into something completely different."

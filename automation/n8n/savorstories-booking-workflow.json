@@ -1,0 +1,212 @@
+{
+  "name": "Savor & Stories — Booking Requests",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "savorstories-booking",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-booking",
+      "name": "Booking Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        300
+      ],
+      "webhookId": "savorstories-booking"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalize and validate the incoming booking request.\nconst body = $input.first().json.body ?? $input.first().json;\n\nconst name = (body.name || '').toString().trim();\nconst email = (body.email || '').toString().trim();\nconst phone = body.phone ? body.phone.toString().trim() : '';\nconst date = (body.date || '').toString().trim();\nconst people = parseInt(body.people, 10) || 1;\nconst message = body.message ? body.message.toString().trim() : '';\nconst lang = ['en', 'fr', 'es'].includes(body.lang) ? body.lang : 'en';\nconst tour = body.tour || {};\nconst tourName = tour[lang] || tour.en || 'a tour';\nconst price = body.price || '';\nconst pageUrl = body.pageUrl || '';\n\nif (!name || !email || !date) {\n  throw new Error('Missing required field: name, email, and date are all required.');\n}\n\nreturn [{\n  json: { name, email, phone, date, people, message, lang, tourName, price, pageUrl }\n}];\n"
+      },
+      "id": "code-validate",
+      "name": "Validate & Normalize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        20,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the language-specific text used by every downstream node.\nconst d = $input.first().json;\n\nconst telegramText = `New booking request!\n\nTour: ${d.tourName}\nDate: ${d.date}\nPeople: ${d.people}\nPrice: ${d.price || 'n/a'}\n\nName: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone || 'not given'}\n${d.message ? 'Message: ' + d.message : ''}\n\nFrom: ${d.pageUrl}`;\n\nconst guestSubject = {\n  en: `Your request for ${d.tourName} — Savor & Stories`,\n  fr: `Votre demande pour ${d.tourName} — Savor & Stories`,\n  es: `Tu solicitud para ${d.tourName} — Savor & Stories`,\n}[d.lang];\n\nconst guestBody = {\n  en: `Hi ${d.name},\n\nThanks for your request for \"${d.tourName}\" on ${d.date} for ${d.people} people.\n\nThis is not a confirmed booking yet — Antoine confirms every booking personally and will get back to you by email or WhatsApp shortly to lock in the details.\n\nIf anything is urgent, message him directly on WhatsApp: https://wa.me/33626391783\n\nÀ bientôt,\nSavor & Stories`,\n  fr: `Bonjour ${d.name},\n\nMerci pour votre demande pour \"${d.tourName}\" le ${d.date} pour ${d.people} personnes.\n\nCe n'est pas encore une réservation confirmée — Antoine confirme chaque réservation personnellement et reviendra vers vous par e-mail ou WhatsApp très bientôt pour finaliser les détails.\n\nPour toute urgence, écrivez-lui directement sur WhatsApp : https://wa.me/33626391783\n\nÀ bientôt,\nSavor & Stories`,\n  es: `Hola ${d.name},\n\nGracias por tu solicitud para \"${d.tourName}\" el ${d.date} para ${d.people} personas.\n\nEsto todavía no es una reserva confirmada — Antoine confirma cada reserva personalmente y te contactará por correo o WhatsApp muy pronto para concretar los detalles.\n\nSi es urgente, escríbele directamente por WhatsApp: https://wa.me/33626391783\n\nHasta pronto,\nSavor & Stories`,\n}[d.lang];\n\nconst calendarSummary = `PENDING: ${d.tourName} — ${d.name} (${d.people}p)`;\nconst calendarDescription = `Booking request via website, not yet confirmed.\n\nName: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone || 'not given'}\nPeople: ${d.people}\nLanguage: ${d.lang}\n${d.message ? 'Message: ' + d.message : ''}`;\n\nreturn [{\n  json: {\n    ...d,\n    telegramText,\n    guestSubject,\n    guestBody,\n    calendarSummary,\n    calendarDescription,\n  }\n}];\n"
+      },
+      "id": "code-templates",
+      "name": "Build Messages",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "REPLACE_WITH_YOUR_TELEGRAM_CHAT_ID",
+        "text": "={{ $json.telegramText }}",
+        "additionalFields": {}
+      },
+      "id": "telegram-notify",
+      "name": "Notify Antoine (Telegram)",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        460,
+        300
+      ],
+      "continueOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE",
+          "name": "Antoine's Telegram Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "REPLACE_WITH_ANTOINE_GOOGLE_CALENDAR_ID",
+          "mode": "list"
+        },
+        "start": "={{ $json.date }}T10:00:00",
+        "end": "={{ $json.date }}T12:00:00",
+        "additionalFields": {
+          "summary": "={{ $json.calendarSummary }}",
+          "description": "={{ $json.calendarDescription }}"
+        }
+      },
+      "id": "calendar-hold",
+      "name": "Tentative Calendar Hold",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        680,
+        300
+      ],
+      "continueOnFail": true,
+      "notes": "Placeholder 10:00-12:00 hold on the requested date. Antoine adjusts the real time when he confirms — this just makes sure the date isn't double booked before he replies.",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "REPLACE",
+          "name": "Antoine's Google Calendar"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact@savornstories.com",
+        "toEmail": "={{ $json.email }}",
+        "subject": "={{ $json.guestSubject }}",
+        "text": "={{ $json.guestBody }}",
+        "options": {}
+      },
+      "id": "email-guest",
+      "name": "Auto-Reply Guest",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        900,
+        300
+      ],
+      "continueOnFail": true,
+      "credentials": {
+        "smtp": {
+          "id": "REPLACE",
+          "name": "Savor & Stories SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true } }}"
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Website",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Booking Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validate & Normalize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate & Normalize": {
+      "main": [
+        [
+          {
+            "node": "Build Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Messages": {
+      "main": [
+        [
+          {
+            "node": "Notify Antoine (Telegram)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Antoine (Telegram)": {
+      "main": [
+        [
+          {
+            "node": "Tentative Calendar Hold",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tentative Calendar Hold": {
+      "main": [
+        [
+          {
+            "node": "Auto-Reply Guest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-Reply Guest": {
+      "main": [
+        [
+          {
+            "node": "Respond to Website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
