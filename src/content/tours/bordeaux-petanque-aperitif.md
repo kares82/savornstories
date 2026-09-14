@@ -12,7 +12,7 @@ duration:
   en: "1.5 hours"
   fr: "1h30"
   es: "1,5 horas"
-price: "90€"
+price: "35€"
 schedule:
   en: "Every day, departure at 18:00"
   fr: "Tous les jours, départ à 18h00"
