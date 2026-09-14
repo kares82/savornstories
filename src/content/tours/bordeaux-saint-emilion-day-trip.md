@@ -49,5 +49,5 @@ description:
     - "Es un día completo en lugar de un añadido rápido, y lo mantengo así a propósito, porque apresurar Saint-Émilion en un par de horas no le hace justicia."
 icon: "🍇"
 order: 7
-heroImage: "/assets/photos/bordeaux-wine-map.jpg"
+heroImage: "/assets/photos/bordeaux-saint-emilion-village.jpg"
 ---

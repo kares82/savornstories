@@ -46,4 +46,5 @@ description:
     - "Mantengo esta visita pequeña y flexible, ya que todo el objetivo es estar en el lugar correcto en el minuto correcto, y un grupo grande hace que eso sea más difícil de gestionar."
 icon: "🌅"
 order: 5
+heroImage: "/assets/photos/bordeaux-sunset-bridge.jpg"
 ---
